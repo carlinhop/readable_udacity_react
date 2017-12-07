@@ -3,7 +3,11 @@ import { Component } from "react";
 
 class Post extends Component {
   render() {
-    return "hola";
+    return (
+    <div>
+      "hola"
+    </div>;
+    )
   }
 }
 
