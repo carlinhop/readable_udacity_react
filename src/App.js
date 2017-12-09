@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-import Post from "./components/Post";
+import PostsList from "./components/PostsList";
 
 class App extends Component {
   constructor(props) {
@@ -28,15 +30,27 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <BrowserRouter>
+        <div className="App">
+          <Route
+            exact
+            path="/"
+            render={props => {
+              return (
+                <div>
+                  <div className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h2>Welcome to React</h2>
+                  </div>
+                  <div>
+                    <PostsList />
+                  </div>
+                </div>
+              );
+            }}
+          />
         </div>
-        <div>
-          <Post />
-        </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

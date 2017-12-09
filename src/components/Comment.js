@@ -5,7 +5,8 @@ class Comment extends Component{
   render(){
 	return (
       <div>
-      	"This is a comment"
+      	<textarea rows="4" cols="50">
+        </textarea>
       </div>
     )
   }
