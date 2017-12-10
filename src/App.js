@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import PostsList from "./components/PostsList";
+import Post from "./components/Post";
+import CommentedPost from "./components/CommentedPost";
 
 class App extends Component {
   constructor(props) {
@@ -49,6 +51,7 @@ class App extends Component {
               );
             }}
           />
+		  <Route path="/comment" component={CommentedPost}/>
         </div>
       </BrowserRouter>
     );

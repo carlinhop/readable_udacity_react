@@ -1,15 +1,15 @@
-import React from "react"
-import {Component} from "react"
+import React from "react";
 
-class Comment extends Component{
-  render(){
-	return (
-      <div>
-      	<textarea rows="4" cols="50">
-        </textarea>
-      </div>
-    )
-  }
+let Comment = ()=>{
+
+  return(
+    <div>
+      <p>Author: John Juan </p>
+      <p>Time since: 2 hours ago</p>
+      <p>This is an excellent comment</p>
+    </div>
+    
+  ) 
 }
 
 export default Comment

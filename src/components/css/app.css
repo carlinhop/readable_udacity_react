@@ -6,3 +6,13 @@
   display: flex;
   flex-direction: row;
 }
+
+.add-comment{
+  display: flex;
+  flex-direction: column;
+}
+
+.commented-post{
+  display: flex;
+  flex-direction: column;
+}
