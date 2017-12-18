@@ -51,7 +51,7 @@ class App extends Component {
               );
             }}
           />
-		  <Route path="/comment" component={CommentedPost}/>
+		  <Route path="/post/:id" component={CommentedPost}/>
         </div>
       </BrowserRouter>
     );

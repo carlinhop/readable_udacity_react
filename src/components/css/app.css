@@ -20,5 +20,8 @@
 .post-details {
   display: flex;
   flex-direction:"row";
-  
+}
+
+.post-detail {
+  margin: 2%;
 }
