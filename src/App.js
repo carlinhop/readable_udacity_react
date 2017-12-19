@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 import "./App.css";
 import PostsList from "./components/PostsList";
 import Post from "./components/Post";
@@ -33,12 +35,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      <MuiThemeProvider>
         <div className="App">
           <Route
             exact
             path="/"
             render={props => {
               return (
+      			
                 <div>
                   <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
@@ -47,12 +51,15 @@ class App extends Component {
                   <div>
                     <PostsList />
                   </div>
+      			  <RaisedButton label="Material UI" />
                 </div>
+      			
               );
             }}
           />
 		  <Route path="/post/:id" component={CommentedPost}/>
         </div>
+	  </MuiThemeProvider>
       </BrowserRouter>
     );
   }
