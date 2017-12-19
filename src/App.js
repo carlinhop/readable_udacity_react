@@ -3,7 +3,10 @@ import { Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 import "./App.css";
 import PostsList from "./components/PostsList";
 import Post from "./components/Post";
@@ -41,17 +44,20 @@ class App extends Component {
             exact
             path="/"
             render={props => {
+      		  const style = {
+                marginRight: 20,
+              };
               return (
       			
                 <div>
-                  <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
-                  </div>
+				  <AppBar title="Readable"
+    				iconClassNameRight="muidocs-icon-navigation-expand-more"></AppBar>
                   <div>
                     <PostsList />
                   </div>
-      			  <RaisedButton label="Material UI" />
+      			  <FloatingActionButton style={style}>
+                    <ContentAdd />
+                  </FloatingActionButton>
                 </div>
       			
               );

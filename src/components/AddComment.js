@@ -1,13 +1,14 @@
 import React from "react"
 import {Component} from "react"
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 class AddComment extends Component{
   render(){
 	return (
       <div className="add-comment">
-      	<textarea rows="4" cols="50">
-        </textarea>
-        <button>Add Comment</button>
+		<TextField multiLine={true}></TextField>
+        <FlatButton label="add comment"/>
       
       </div>
     )
