@@ -1,12 +1,23 @@
 import React from "react";
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 let Comment = ()=>{
 
   return(
     <div>
-      <p>Author: John Juan </p>
-      <p>Time since: 2 hours ago</p>
-      <p>This is an excellent comment</p>
+
+    <Card>
+        <CardHeader
+          title="Author: John Juan"
+          subtitle="Time since: 2 hours ago"
+        />
+        <CardActions>
+          <CardText>
+          This is an excellent comment
+    	  </CardText>
+          
+        </CardActions>
+      </Card>
     </div>
     
   ) 

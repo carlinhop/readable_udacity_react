@@ -6,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-
 import "./App.css";
 import PostsList from "./components/PostsList";
 import Post from "./components/Post";
@@ -39,23 +38,22 @@ class App extends Component {
     return (
       <BrowserRouter>
       <MuiThemeProvider>
-        <div className="App">
+        <div>
           <Route
             exact
             path="/"
             render={props => {
-      		  const style = {
-                marginRight: 20,
-              };
+
               return (
       			
-                <div>
+                <div className="App">
 				  <AppBar title="Readable"
-    				iconClassNameRight="muidocs-icon-navigation-expand-more"></AppBar>
-                  <div>
-                    <PostsList />
+    				iconClassNameRight="muidocs-icon-navigation-expand-more">
+      			  </AppBar>
+                  <div className="posts-list-container">
+                  	<PostsList />
                   </div>
-      			  <FloatingActionButton style={style}>
+      			  <FloatingActionButton className="add-post-button">
                     <ContentAdd />
                   </FloatingActionButton>
                 </div>

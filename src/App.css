@@ -1,24 +1,31 @@
 .App {
-  text-align: center;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.posts-list-container{
+  
+  
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.add-post-button{
+  
+  align-self: flex-end;
 }
 
-.App-intro {
-  font-size: large;
+.add-comment{
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.commented-post{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+

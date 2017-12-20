@@ -8,8 +8,7 @@ class AddComment extends Component{
 	return (
       <div className="add-comment">
 		<TextField multiLine={true}></TextField>
-        <FlatButton label="add comment"/>
-      
+        <FlatButton label="publish comment"/>
       </div>
     )
   }
