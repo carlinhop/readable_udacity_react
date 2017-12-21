@@ -47,7 +47,7 @@ class App extends Component {
               return (
       			
                 <div className="App">
-				  <AppBar title="Readable"
+				  <AppBar className="appbar" title="Readable"
     				iconClassNameRight="muidocs-icon-navigation-expand-more">
       			  </AppBar>
                   <div className="posts-list-container">

@@ -5,7 +5,7 @@ import Post from "./Post";
 class PostsList extends Component{
   render(){
     
-    let posts_list = [<Post/>, <Post/>]
+    let posts_list = [<Post/>, <Post/>, <Post/>, <Post/>, <Post/>, <Post/>, <Post/>]
     
     return (
       <div className="postList">

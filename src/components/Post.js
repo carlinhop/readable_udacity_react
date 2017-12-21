@@ -13,8 +13,7 @@ class Post extends Component {
     <div className="post">
       <Card>
         <CardHeader
-          title="Noticia jugoza"
-          subtitle="Te va a encantar"
+          title="A Federal Ban on Making Lethal Viruses Is Lifted"
         />
         <CardActions>
           <FlatButton label="vote up"  primary={true} style={style} />
