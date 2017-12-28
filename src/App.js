@@ -10,6 +10,7 @@ import "./App.css";
 import PostsList from "./components/PostsList";
 import Post from "./components/Post";
 import CommentedPost from "./components/CommentedPost";
+import MenuBar from "./components/MenuBar";
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,9 @@ class App extends Component {
   }
 
   render() {
+      const style = {
+      "padding-bottom": "5%"
+    }
     return (
       <BrowserRouter>
       <MuiThemeProvider>
@@ -47,9 +51,7 @@ class App extends Component {
               return (
       			
                 <div className="App">
-				  <AppBar className="appbar" title="Readable"
-    				iconClassNameRight="muidocs-icon-navigation-expand-more">
-      			  </AppBar>
+				  	<MenuBar style={style}/>
                   <div className="posts-list-container">
                   	<PostsList />
                   </div>
