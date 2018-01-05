@@ -3,8 +3,13 @@ import { Component } from "react";
 import {Link} from "react-router-dom";
 import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader} from 'material-ui/Card';
+import { connect } from 'react-redux';
 
 class Post extends Component {
+  constructor(props){
+    super(props);
+  }
+  
   render() {
     const test_id = 1;
     const style = {margin: 12, 'text-decoration': 'none'}
@@ -13,10 +18,9 @@ class Post extends Component {
     <div className="post">
       <Card>
         <CardHeader 
-          title="A Federal Ban on Making Lethal Viruses Is Lifted"
+          title= {this.props.title}
         />
         <CardActions>
-          
 		  <RaisedButton label="up" style={style}/>
           <RaisedButton label="down" style={style}/>
           <RaisedButton label="hide" />
@@ -28,4 +32,9 @@ class Post extends Component {
   }
 }
 
-export default Post;
+const mapStateToProps = (state, props) => ({
+	title: state.post.title
+});
+
+export default connect(mapStateToProps)(Post);
+

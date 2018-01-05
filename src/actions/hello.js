@@ -1,4 +1,4 @@
-export  const HELLO = 'HELLO';
+export const HELLO = 'HELLO';
 
 export function showHello() {
   return {
