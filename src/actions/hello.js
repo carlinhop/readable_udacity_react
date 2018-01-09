@@ -7,7 +7,7 @@ export const HELLO = 'HELLO';
 const urlCategories = `${process.env.REACT_APP_BACKEND}/categories`;
 const urlPosts = `${process.env.REACT_APP_BACKEND}/posts`;
 
-export function getData(){
+export function getData(dispatch){
 
   return dispatch => {
   	fetch(urlPosts, {

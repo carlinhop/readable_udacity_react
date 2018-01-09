@@ -20,23 +20,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backend: getData()
+      backend: "nada"
     };
   }
 
   componentDidMount() {
-	
-    store.subscribe( () => {
-    	this.setState( () => {
-          	
-        	backend: store.getState()
-          	
-        });
-    });
+	this.setState({backend: store.dispatch(getData())})
   }
 
   render() {
-      console.log(this.state);
+      console.log(store.dispatch(getData()));
       const style = {
       "padding-bottom": "5%"
     }
@@ -74,8 +67,7 @@ class App extends Component {
 
 function mapStateToProps(state) {  
   return {
-    backend: state.backend,
-    
+    backend: state,
   }
 }
 
