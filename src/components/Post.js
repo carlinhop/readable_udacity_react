@@ -33,7 +33,7 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-	title: state.post.title
+	title: "titulo"
 });
 
 export default connect(mapStateToProps)(Post);

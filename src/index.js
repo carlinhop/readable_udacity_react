@@ -7,14 +7,14 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./reducers/reducer";
 import { HELLO } from "./actions/hello";
-import { showHello } from "./actions/hello";
 
 
 
-const store = createStore(reducer,
+
+export const store = createStore(reducer,
                          window.__REDUX__DEVTOOLS_EXTENSION__ && window.__REDUX__DEVTOOLS_EXTENSION__());
 
-store.dispatch(showHello());
+
 console.log(store.getState());
 
 ReactDOM.render(

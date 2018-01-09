@@ -11,31 +11,32 @@ import PostsList from "./components/PostsList";
 import Post from "./components/Post";
 import CommentedPost from "./components/CommentedPost";
 import MenuBar from "./components/MenuBar";
+import {store} from "./index"
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import { getData } from "./actions/hello";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backend: "backend-data"
+      backend: getData()
     };
   }
 
   componentDidMount() {
-    const url = `${process.env.REACT_APP_BACKEND}/categories`;
-    console.log("fetching from url", url);
-    fetch(url, {
-      headers: { Authorization: "whatever-you-want" },
-      credentials: "include"
-    })
-      .then(res => {
-        return res.text();
-      })
-      .then(data => {
-        this.setState({ backend: data });
-      });
+	
+    store.subscribe( () => {
+    	this.setState( () => {
+          	
+        	backend: store.getState()
+          	
+        });
+    });
   }
 
   render() {
+      console.log(this.state);
       const style = {
       "padding-bottom": "5%"
     }
@@ -71,4 +72,18 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {  
+  return {
+    backend: state.backend,
+    
+  }
+}
+
+
+function mapDispatchToProps(dispatch) {  
+  return bindActionCreators({
+    getData: getData
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
