@@ -25,11 +25,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-	this.setState({backend: store.dispatch(getData())})
+	console.log(this.props.dispatch(getData()));
   }
 
   render() {
-      console.log(store.dispatch(getData()));
+      
       const style = {
       "padding-bottom": "5%"
     }
@@ -65,17 +65,6 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {  
-  return {
-    backend: state,
-  }
-}
 
 
-function mapDispatchToProps(dispatch) {  
-  return bindActionCreators({
-    getData: getData
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect()(App);

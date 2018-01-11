@@ -10,13 +10,8 @@ import reducer from "./reducers/reducer";
 import { HELLO } from "./actions/hello";
 
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);  
+export const store = createStore(reducer, applyMiddleware(thunk)); 
 
-export const store = createStoreWithMiddleware(reducer,
-                         window.__REDUX__DEVTOOLS_EXTENSION__ && window.__REDUX__DEVTOOLS_EXTENSION__());
-
-
-console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

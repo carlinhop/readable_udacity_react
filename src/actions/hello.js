@@ -1,29 +1,6 @@
-
 export const HELLO = 'HELLO';
-
-
-
-
-const urlCategories = `${process.env.REACT_APP_BACKEND}/categories`;
-const urlPosts = `${process.env.REACT_APP_BACKEND}/posts`;
-
-export function getData(dispatch){
-
-  return dispatch => {
-  	fetch(urlPosts, {
-    headers: { Authorization: "whatever-you-want" },
-    credentials: "include"
-  })
-  .then(res => {
-    return res.text();
-  })
-  .then(data => {
-    return dispatch(showHello(data))
-    
-  });
-  }
-  
-}
+const urlCategories = `https://localhost:3001/posts/categories`;
+const urlPosts = process.env.REACT_APP_BACKEND + ":3001/posts";
 
 export function showHello(posts) {
   return {
@@ -31,3 +8,20 @@ export function showHello(posts) {
     payload: posts
   }
 };
+
+export function getData(){
+
+  return dispatch => {
+  	fetch(urlPosts, {headers: { 'Authorization': 'carlos:whatever' }
+    })
+  .then(res => {
+    return res.text();
+  })
+  .then(data => {
+    return dispatch(showHello(data))
+    
+  	});
+  }
+  
+}
+
