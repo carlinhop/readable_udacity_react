@@ -19,13 +19,12 @@ import { getData } from "./actions/hello";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      backend: "nada"
-    };
   }
 
   componentDidMount() {
 	console.log(this.props.dispatch(getData()));
+    console.log(this.props.posts);
+    
   }
 
   render() {
@@ -65,6 +64,10 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return {
+    posts: state.posts
+  }
+}
 
-
-export default connect()(App);
+export default connect(mapStateToProps)(App);

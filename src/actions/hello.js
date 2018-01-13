@@ -12,12 +12,15 @@ export function showHello(posts) {
 export function getData(){
 
   return dispatch => {
-  	fetch(urlPosts, {headers: { 'Authorization': 'carlos:whatever' }
+  	fetch(urlPosts, {headers: { 'Content-Type': 'application/json',
+                                'Authorization': "carlos:hola"}
     })
   .then(res => {
+    console.log(res);
     return res.text();
   })
   .then(data => {
+    
     return dispatch(showHello(data))
     
   	});
