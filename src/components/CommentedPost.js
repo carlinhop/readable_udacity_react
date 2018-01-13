@@ -3,6 +3,7 @@ import Post from "./Post"
 import AddComment from "./AddComment"
 import Comment from "./Comment"
 import MenuBar from "./MenuBar";
+import { connect } from 'react-redux';
 
 let CommentedPost = (props) => {
   
@@ -14,7 +15,7 @@ let CommentedPost = (props) => {
       <MenuBar style={style}/>
     
       <div className="commented-post">
-          <Post/>
+          <Post post={props.post}/>
           <AddComment/>
           <Comment/>
       </div>
@@ -22,4 +23,11 @@ let CommentedPost = (props) => {
   )
 }
 
-export default CommentedPost;
+function mapStateToProps(state, props){
+  console.log(props);
+	return(
+      
+      {post: state.posts[props.match.params.id]}
+    )
+}
+export default connect(mapStateToProps)(CommentedPost);
