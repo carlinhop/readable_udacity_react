@@ -7,11 +7,11 @@ let Comment = props => {
     <div>
       <Card>
         <CardHeader
-          title={props.post.author}
+          title={props.comment.author}
           subtitle="Time since: 2 hours ago"
         />
         <CardActions>
-          <CardText>This is an excellent comment</CardText>
+          <CardText>{props.comment.body}</CardText>
         </CardActions>
       </Card>
     </div>
@@ -19,4 +19,3 @@ let Comment = props => {
 };
 
 export default Comment;
-

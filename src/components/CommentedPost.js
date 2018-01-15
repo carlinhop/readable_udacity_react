@@ -4,30 +4,55 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
+import { getCommentsData } from "../actions/actionCreators";
+import { Component } from "react";
 
-let CommentedPost = props => {
-  const style = {
-    "padding-bottom": "1%"
-  };
-  return (
-    <div>
-      <MenuBar style={style} />
+class CommentedPost extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <div className="commented-post">
-        <Post post={props.post} />
-        <AddComment post={props.post} />
-        <Comment post={props.post} />
+  componentWillMount() {
+    this.props.dispatch(getCommentsData("8xf0y6ziyjabvozdd253nd"));
+  }
+
+  render() {
+    const style = {
+      "padding-bottom": "1%"
+    };
+    console.log(this.props);
+    let commentsLists;
+    if (this.props.comments) {
+      commentsLists = this.props.comments.map(comment => {
+        return <Comment comment={comment} />;
+      });
+    } else {
+      commentsLists = <Comment comment={{ 0: { author: "nothing" } }} />;
+    }
+
+    return (
+      <div>
+        <MenuBar style={style} />
+
+        <div className="commented-post">
+          <Post post={this.props.post} />
+
+          <AddComment post={this.props.post} />
+
+          {commentsLists}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-function mapStateToProps(state, props) {
-  console.log(props);
+function mapStateToProps(state, router) {
+  console.log(state, router);
   return {
     post: state.posts.filter(post => {
-      return post.id === props.match.params.id;
-    })[0]
+      return post.id === router.match.params.id;
+    })[0],
+    comments: state ? state.comments : {}
   };
 }
 export default connect(mapStateToProps)(CommentedPost);

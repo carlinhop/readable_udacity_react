@@ -14,7 +14,8 @@ import MenuBar from "./components/MenuBar";
 import { store } from "./index";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getData } from "./actions/hello";
+import { getPostData } from "./actions/actionCreators";
+import { getCommentsData } from "./actions/actionCreators";
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getData());
+    this.props.dispatch(getPostData());
   }
 
   render() {

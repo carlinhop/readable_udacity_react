@@ -1,4 +1,4 @@
-const initialData = [
+const initialPostData = [
   {
     id: "8xf0y6ziyjabvozdd253nd",
     timestamp: 1467166872634,
@@ -23,11 +23,12 @@ const initialData = [
   }
 ];
 
-function reducer(state = { posts: initialData }, action) {
+function reducer(state = { posts: initialPostData }, action) {
   switch (action.type) {
-    case "HELLO":
+    case "ALLPOSTS":
       return Object.assign({}, state, { posts: action.payload });
-
+    case "GETCOMMENTS":
+      return Object.assign({}, state, { comments: action.payload });
     default:
       return state;
   }
