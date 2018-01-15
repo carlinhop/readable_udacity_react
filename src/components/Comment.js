@@ -1,28 +1,22 @@
 import React from "react";
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import { connect } from 'react-redux';
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
+import { connect } from "react-redux";
 
-let Comment = (props)=>{
-
-  return(
+let Comment = props => {
+  return (
     <div>
-
-    <Card>
+      <Card>
         <CardHeader
-          title= {props.post.author}
+          title={props.post.author}
           subtitle="Time since: 2 hours ago"
         />
         <CardActions>
-          <CardText>
-          This is an excellent comment
-    	  </CardText>
-          
+          <CardText>This is an excellent comment</CardText>
         </CardActions>
       </Card>
     </div>
-    
-  ) 
-}
-
+  );
+};
 
 export default Comment;
+

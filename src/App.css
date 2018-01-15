@@ -1,38 +1,34 @@
 .App {
-  height: 100%; 
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
 
 .appbar {
   position: absolute;
-  
 }
 
-.posts-list-container{
+.posts-list-container {
   margin-top: 2%;
 }
 
-.add-post-button{
+.add-post-button {
   position: fixed;
-  top:85%;
+  top: 85%;
   left: 90%;
 }
 
-.add-comment{
+.add-comment {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 2%;
 }
 
-.commented-post{
+.commented-post {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5%;
 }
-
-
