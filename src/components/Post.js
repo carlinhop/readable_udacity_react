@@ -18,7 +18,12 @@ class Post extends Component {
       <div className="post">
         <Card>
           <CardHeader
-            title={this.props.post ? this.props.post.title : "Default Title"}
+            title={this.props.post ? this.props.post.title : "Default title"}
+            subtitle={
+              this.props.post
+                ? "Voted: " + this.props.post.voteScore
+                : "Default subtitle"
+            }
           />
           <CardActions>
             <RaisedButton label="up" style={style} />
