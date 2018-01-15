@@ -16,8 +16,8 @@ let CommentedPost = (props) => {
     
       <div className="commented-post">
           <Post post={props.post}/>
-          <AddComment/>
-          <Comment/>
+          <AddComment post={props.post}/>
+          <Comment post={props.post}/>
       </div>
     </div>
   )
@@ -27,7 +27,10 @@ function mapStateToProps(state, props){
   console.log(props);
 	return(
       
-      {post: state.posts[props.match.params.id]}
+      {
+        post: state.posts[props.match.params.id],
+        
+      }
     )
 }
 export default connect(mapStateToProps)(CommentedPost);

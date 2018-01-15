@@ -1,14 +1,15 @@
 import React from "react";
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import { connect } from 'react-redux';
 
-let Comment = ()=>{
+let Comment = (props)=>{
 
   return(
     <div>
 
     <Card>
         <CardHeader
-          title="Author: John Juan"
+          title= {props.post.author}
           subtitle="Time since: 2 hours ago"
         />
         <CardActions>
@@ -23,4 +24,5 @@ let Comment = ()=>{
   ) 
 }
 
-export default Comment
+
+export default Comment;
