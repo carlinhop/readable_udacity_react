@@ -26,7 +26,7 @@ class PostsList extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    posts: state ? state.posts : [{ nada: { title: "que mostrar" } }]
+    posts: state ? state.posts : [{ title: "nada que mostrar" }]
   };
 }
 

@@ -21,7 +21,9 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.dispatch(getData());
+  }
 
   render() {
     const style = {

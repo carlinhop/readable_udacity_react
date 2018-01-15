@@ -26,8 +26,7 @@ const initialData = [
 function reducer(state = { posts: initialData }, action) {
   switch (action.type) {
     case "HELLO":
-      return;
-      action.payload;
+      return Object.assign({}, state, { posts: action.payload });
 
     default:
       return state;

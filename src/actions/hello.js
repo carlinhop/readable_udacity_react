@@ -21,8 +21,7 @@ export function getData() {
         return res.text();
       })
       .then(data => {
-        console.log(data);
-        return dispatch(showHello(data));
+        return dispatch(showHello(JSON.parse(data)));
       });
   };
 }
