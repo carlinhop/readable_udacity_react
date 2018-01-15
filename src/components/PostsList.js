@@ -1,35 +1,33 @@
 import React from "react";
-import {Component} from "react";
-import {connect} from "react-redux";
+import { Component } from "react";
+import { connect } from "react-redux";
 import Post from "./Post";
 
-class PostsList extends Component{
- 
+class PostsList extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   componentDidMount() {
+    console.log(this.props.posts);
   }
-  
-  render(){
+
+  render() {
     let posts_list = [];
-    for (let id in this.props.posts){
-    	posts_list.push(<Post post={this.props.posts[id]}/>)
+    console.log(this.props.posts);
+    for (let post of this.props.posts) {
+      posts_list.push(<Post post={post} />);
     }
-                        
-    return (
-      <div className="postList">
-          {posts_list}
-      </div>
-    )
+
+    return <div className="postList">{posts_list}</div>;
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
+  console.log(state);
   return {
-    posts: state.posts
-  }
+    posts: state ? state.posts : [{ nada: { title: "que mostrar" } }]
+  };
 }
 
 export default connect(mapStateToProps)(PostsList);
