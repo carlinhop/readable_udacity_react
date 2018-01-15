@@ -25,8 +25,9 @@ let CommentedPost = props => {
 function mapStateToProps(state, props) {
   console.log(props);
   return {
-    post: state.posts[props.match.params.id]
+    post: state.posts.filter(post => {
+      return post.id === props.match.params.id;
+    })[0]
   };
 }
 export default connect(mapStateToProps)(CommentedPost);
-
