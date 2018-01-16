@@ -3,16 +3,21 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
 import { Card, CardActions, CardHeader } from "material-ui/Card";
+import { postVoteData } from "../actions/actionCreators";
+import { connect } from "react-redux";
 
 class Post extends Component {
   constructor(props) {
     super(props);
   }
 
+  vote(postID, option) {
+    this.props.dispatch(postVoteData(postID, option));
+  }
+
   render() {
     const id = this.props.post ? this.props.post["id"] : 1;
     const style = { margin: 12, "text-decoration": "none" };
-    console.log(this.props.post);
 
     return (
       <div className="post">
@@ -26,8 +31,20 @@ class Post extends Component {
             }
           />
           <CardActions>
-            <RaisedButton label="up" style={style} />
-            <RaisedButton label="down" style={style} />
+            <RaisedButton
+              label="up"
+              style={style}
+              onClick={event => {
+                this.vote(this.props.post.id, "upVote");
+              }}
+            />
+            <RaisedButton
+              label="down"
+              style={style}
+              onClick={event => {
+                this.vote(this.props.post.id, "downVote");
+              }}
+            />
             <RaisedButton label="hide" />
             <RaisedButton
               label={
@@ -43,4 +60,6 @@ class Post extends Component {
   }
 }
 
-export default Post;
+function mapStateToProps(state) {}
+
+export default connect(mapStateToProps)(Post);
