@@ -4,7 +4,7 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
-import { getCommentsData } from "../actions/actionCreators";
+import { getCommentsData, postCommentData } from "../actions/actionCreators";
 import { Component } from "react";
 
 class CommentedPost extends Component {
@@ -14,6 +14,14 @@ class CommentedPost extends Component {
 
   componentWillMount() {
     this.props.dispatch(getCommentsData(this.props.post.id));
+    this.props.dispatch(
+      postCommentData(
+        Date.now(),
+        "Comentario pajup",
+        "carlos",
+        this.props.post.id
+      )
+    );
   }
 
   render() {

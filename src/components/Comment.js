@@ -43,6 +43,7 @@ class Comment extends Component {
                 this.vote();
               }}
             />
+            <RaisedButton label="hide" />
           </CardActions>
         </Card>
       </div>

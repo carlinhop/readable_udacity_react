@@ -45,6 +45,10 @@ function reducer(state = { posts: initialPostData }, action) {
         let newComments = oldComments.concat(action.payload);
         return Object.assign({}, state, { comments: newComments });
       }
+    case "POSTCOMMENT":
+      return Object.assign({}, state, {
+        comments: state.comments.concat([action.payload])
+      });
 
     default:
       return state;
