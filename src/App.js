@@ -16,6 +16,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getPostData } from "./actions/actionCreators";
 import { getCommentsData } from "./actions/actionCreators";
+import { postVoteData } from "./actions/actionCreators";
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(getPostData());
+    this.props.dispatch(postVoteData("8xf0y6ziyjabvozdd253nd", "upVote"));
   }
 
   render() {

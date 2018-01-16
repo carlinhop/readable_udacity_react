@@ -1,8 +1,10 @@
 export const ALLPOSTS = "ALLPOSTS";
 export const GETCOMMENTS = "GETCOMMENTS";
+export const POSTVOTE = "POSTVOTE";
 const urlCategories = "http://localhost:3001/posts/categories";
 const urlPosts = "http://localhost:3001/posts";
 const urlComments = "http://localhost:3001/posts/id/comments";
+const urlVotes = "http://localhost:3001/posts/id/";
 
 export function getPosts(posts) {
   return {
@@ -50,6 +52,35 @@ export function getCommentsData(postID) {
       })
       .then(data => {
         return dispatch(getComments(JSON.parse(data)));
+      });
+  };
+}
+
+export function postVote(post) {
+  return {
+    type: POSTVOTE,
+    payload: post
+  };
+}
+
+export function postVoteData(postID, option) {
+  return dispatch => {
+    let urlPostVoteUrl = urlVotes.replace("id", postID);
+
+    fetch(urlPostVoteUrl, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+      body: JSON.stringify({ option: option }),
+      method: "POST"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        console.log(JSON.parse(data));
+        return dispatch(postVote(JSON.parse(data)));
       });
   };
 }

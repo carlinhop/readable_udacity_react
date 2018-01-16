@@ -13,14 +13,14 @@ class CommentedPost extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getCommentsData("8xf0y6ziyjabvozdd253nd"));
+    this.props.dispatch(getCommentsData(this.props.post.id));
   }
 
   render() {
     const style = {
       "padding-bottom": "1%"
     };
-    console.log(this.props);
+
     let commentsLists;
     if (this.props.comments) {
       commentsLists = this.props.comments.map(comment => {
@@ -47,7 +47,6 @@ class CommentedPost extends Component {
 }
 
 function mapStateToProps(state, router) {
-  console.log(state, router);
   return {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;

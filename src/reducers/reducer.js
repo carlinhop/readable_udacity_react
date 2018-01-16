@@ -29,6 +29,16 @@ function reducer(state = { posts: initialPostData }, action) {
       return Object.assign({}, state, { posts: action.payload });
     case "GETCOMMENTS":
       return Object.assign({}, state, { comments: action.payload });
+    case "POSTVOTE":
+      let oldPosts = state.posts.filter(post => {
+        return post["id"] !== action.payload["id"];
+      });
+      console.log(oldPosts);
+
+      let newPosts = oldPosts.concat(action.payload);
+
+      console.log(newPosts);
+      return Object.assign({}, state, { posts: newPosts });
     default:
       return state;
   }
