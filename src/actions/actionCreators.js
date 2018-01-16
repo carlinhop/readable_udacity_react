@@ -98,21 +98,20 @@ export function postComment(comments, typeOfVote) {
   };
 }
 
-export function postCommentData(timestamp, body, owner, parentId) {
+export function postCommentData(id, timestamp, body, owner, parentId) {
   return dispatch => {
     fetch(allComments, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "carlos"
       },
-      body: JSON.stringify({ timestamp, body, owner, parentId }),
+      body: JSON.stringify({ id, timestamp, body, owner, parentId }),
       method: "POST"
     })
       .then(res => {
         return res.text();
       })
       .then(data => {
-        console.log(JSON.parse(data));
         return dispatch(postComment(JSON.parse(data)));
       });
   };
