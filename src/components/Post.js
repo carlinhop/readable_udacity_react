@@ -12,7 +12,7 @@ class Post extends Component {
   }
 
   vote(postID, option) {
-    this.props.dispatch(postVoteData(postID, option));
+    this.props.dispatch(postVoteData(postID, "post", option));
   }
 
   render() {

@@ -30,15 +30,22 @@ function reducer(state = { posts: initialPostData }, action) {
     case "GETCOMMENTS":
       return Object.assign({}, state, { comments: action.payload });
     case "POSTVOTE":
-      let oldPosts = state.posts.filter(post => {
-        return post["id"] !== action.payload["id"];
-      });
-      console.log(oldPosts);
+      if (action.typeOfVote === "post") {
+        let oldPosts = state.posts.filter(post => {
+          return post["id"] !== action.payload["id"];
+        });
 
-      let newPosts = oldPosts.concat(action.payload);
+        let newPosts = oldPosts.concat(action.payload);
 
-      console.log(newPosts);
-      return Object.assign({}, state, { posts: newPosts });
+        return Object.assign({}, state, { posts: newPosts });
+      } else {
+        let oldComments = state.comments.filter(comment => {
+          return comment["id"] !== action.payload["id"];
+        });
+        let newComments = oldComments.concat(action.payload);
+        return Object.assign({}, state, { comments: newComments });
+      }
+
     default:
       return state;
   }
