@@ -24,6 +24,15 @@ class App extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    store.subscribe(() => {
+      let state = store.getState();
+      this.setState({
+        posts: state.posts
+      });
+    });
+  }
+
   componentDidMount() {
     this.props.dispatch(getPostData());
   }

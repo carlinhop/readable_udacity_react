@@ -5,7 +5,9 @@ import Comment from "./Comment";
 import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
 import { getCommentsData } from "../actions/actionCreators";
+import { postPostData } from "../actions/actionCreators";
 import { Component } from "react";
+import AddPost from "./AddPost";
 
 class NewPost extends Component {
   constructor(props) {
@@ -24,9 +26,7 @@ class NewPost extends Component {
         <MenuBar style={style} />
 
         <div className="commented-post">
-          <Post />
-
-          <AddComment />
+          <AddPost />
         </div>
       </div>
     );

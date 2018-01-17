@@ -50,6 +50,11 @@ function reducer(state = { posts: initialPostData }, action) {
       return Object.assign({}, state, {
         comments: oldComments.concat([action.payload])
       });
+    case "POSTPOST":
+      let oldPosts = state.posts.slice();
+      return Object.assign({}, state, {
+        posts: oldPosts.concat([action.payload])
+      });
 
     default:
       return state;

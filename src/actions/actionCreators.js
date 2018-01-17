@@ -2,12 +2,15 @@ export const ALLPOSTS = "ALLPOSTS";
 export const GETCOMMENTS = "GETCOMMENTS";
 export const POSTVOTE = "POSTVOTE";
 export const POSTCOMMENT = "POSTCOMMENT";
+export const POSTPOST = "POSTPOST";
+
 const urlCategories = "http://localhost:3001/posts/categories";
 const urlPosts = "http://localhost:3001/posts";
 const urlComments = "http://localhost:3001/posts/id/comments";
 const urlPostsVotes = "http://localhost:3001/posts/id/";
 const urlCommentsVotes = "http://localhost:3001/comments/id/";
 const allComments = "http://localhost:3001/comments";
+const urlAddPost = "http://localhost:3001/posts";
 
 export function getPosts(posts) {
   return {
@@ -113,6 +116,32 @@ export function postCommentData(id, timestamp, body, owner, parentId) {
       })
       .then(data => {
         return dispatch(postComment(JSON.parse(data)));
+      });
+  };
+}
+
+export function postPost(post) {
+  return {
+    type: POSTPOST,
+    payload: post
+  };
+}
+
+export function postPostData(id, timestamp, title, body, owner, category) {
+  return dispatch => {
+    fetch(urlAddPost, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+      body: JSON.stringify({ id, timestamp, title, body, owner, category }),
+      method: "POST"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        return dispatch(postPost(JSON.parse(data)));
       });
   };
 }

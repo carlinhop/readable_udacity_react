@@ -4,6 +4,7 @@ import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import { postCommentData } from "../actions/actionCreators";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 class AddComment extends Component {
   constructor(props) {
@@ -11,7 +12,6 @@ class AddComment extends Component {
   }
 
   getCommentBody(body) {
-    console.log(body.value);
     this.setState({ commentBody: body.value });
   }
 
@@ -41,6 +41,7 @@ class AddComment extends Component {
           primary={true}
           onClick={event => {
             this.postComment();
+            return <Redirect to="/" />;
           }}
         />
       </div>
