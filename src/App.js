@@ -16,6 +16,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getPostData } from "./actions/actionCreators";
 import { getCommentsData } from "./actions/actionCreators";
+import NewPost from "./components/NewPost";
+import { Link } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -44,14 +46,17 @@ class App extends Component {
                     <div className="posts-list-container">
                       <PostsList />
                     </div>
-                    <FloatingActionButton className="add-post-button">
-                      <ContentAdd />
-                    </FloatingActionButton>
+                    <Link to="/newpost">
+                      <FloatingActionButton className="add-post-button">
+                        <ContentAdd />
+                      </FloatingActionButton>
+                    </Link>
                   </div>
                 );
               }}
             />
             <Route path="/post/:id" component={CommentedPost} />
+            <Route path="/newpost" component={NewPost} />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>

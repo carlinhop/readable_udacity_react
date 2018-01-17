@@ -10,9 +10,9 @@ class Comment extends Component {
     super(props);
   }
 
-  vote() {
+  vote(typeOfVote) {
     this.props.dispatch(
-      postVoteData(this.props.comment.id, "comment", "upVote")
+      postVoteData(this.props.comment.id, "comment", typeOfVote)
     );
   }
   render() {
@@ -33,14 +33,14 @@ class Comment extends Component {
               label="up"
               style={style}
               onClick={event => {
-                this.vote();
+                this.vote("upVote");
               }}
             />
             <RaisedButton
               label="down"
               style={style}
               onClick={event => {
-                this.vote();
+                this.vote("downVote");
               }}
             />
             <RaisedButton label="hide" />
