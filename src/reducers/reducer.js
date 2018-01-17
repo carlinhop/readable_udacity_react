@@ -57,6 +57,7 @@ function reducer(state = { posts: initialPostData }, action) {
       });
     case "DELETEPOST":
       let oldPosts2 = state.posts.slice();
+      console.log(action.payload.id);
       return Object.assign({}, state, {
         posts: oldPosts2.filter(post => {
           return post.id !== action.payload.id;

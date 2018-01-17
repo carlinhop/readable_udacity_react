@@ -170,7 +170,7 @@ export function deletePostData(id) {
       })
       .then(data => {
         console.log(JSON.parse(data));
-        return dispatch(postPost(JSON.parse(data)));
+        return dispatch(deletePost(JSON.parse(data)));
       });
   };
 }
