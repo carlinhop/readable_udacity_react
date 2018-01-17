@@ -18,7 +18,7 @@ class AddComment extends Component {
   postComment(body) {
     this.props.dispatch(
       postCommentData(
-        Date.now(),
+        Date.now().toString(),
         Date.now(),
         this.state.commentBody,
         "carlos",

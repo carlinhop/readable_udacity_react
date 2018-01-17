@@ -4,7 +4,7 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
-import { getCommentsData, postCommentData } from "../actions/actionCreators";
+import { getCommentsData } from "../actions/actionCreators";
 import { Component } from "react";
 
 class CommentedPost extends Component {
@@ -12,16 +12,8 @@ class CommentedPost extends Component {
     super(props);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(getCommentsData(this.props.post.id));
-    this.props.dispatch(
-      postCommentData(
-        Date.now(),
-        "Comentario pajup",
-        "carlos",
-        this.props.post.id
-      )
-    );
   }
 
   render() {
@@ -55,6 +47,7 @@ class CommentedPost extends Component {
 }
 
 function mapStateToProps(state, router) {
+  console.log(state.posts);
   return {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;

@@ -55,6 +55,13 @@ function reducer(state = { posts: initialPostData }, action) {
       return Object.assign({}, state, {
         posts: oldPosts.concat([action.payload])
       });
+    case "DELETEPOST":
+      let oldPosts2 = state.posts.slice();
+      return Object.assign({}, state, {
+        posts: oldPosts2.filter(post => {
+          return post.id !== action.payload.id;
+        })
+      });
 
     default:
       return state;

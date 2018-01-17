@@ -18,6 +18,7 @@ import { getPostData } from "./actions/actionCreators";
 import { getCommentsData } from "./actions/actionCreators";
 import NewPost from "./components/NewPost";
 import { Link } from "react-router-dom";
+import Chip from "material-ui/Chip";
 
 class App extends Component {
   constructor(props) {
@@ -25,12 +26,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    store.subscribe(() => {
-      let state = store.getState();
-      this.setState({
-        posts: state.posts
-      });
-    });
+    // store.subscribe(() => {
+    //   let state = store.getState();
+    //   this.setState({
+    //     posts: state.posts
+    //   });
+    // });
   }
 
   componentDidMount() {
@@ -52,9 +53,11 @@ class App extends Component {
                 return (
                   <div className="App">
                     <MenuBar style={style} />
+                    <Chip className="chip">category</Chip>
                     <div className="posts-list-container">
                       <PostsList />
                     </div>
+
                     <Link to="/newpost">
                       <FloatingActionButton className="add-post-button">
                         <ContentAdd />

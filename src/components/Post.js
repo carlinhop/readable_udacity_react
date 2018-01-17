@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
 import { Card, CardActions, CardHeader } from "material-ui/Card";
 import { postVoteData } from "../actions/actionCreators";
+import { deletePostData } from "../actions/actionCreators";
 import { connect } from "react-redux";
+import ActionDelete from "material-ui/svg-icons/action/delete";
 
 class Post extends Component {
   constructor(props) {
@@ -13,6 +15,10 @@ class Post extends Component {
 
   vote(postID, option) {
     this.props.dispatch(postVoteData(postID, "post", option));
+  }
+
+  deletePost() {
+    this.props.dispatch(deletePostData(this.props.post.id));
   }
 
   render() {
@@ -30,7 +36,7 @@ class Post extends Component {
                 : "Default subtitle"
             }
           />
-          <CardActions>
+          <CardActions className="post-card-actions">
             <RaisedButton
               label="up"
               style={style}
@@ -45,6 +51,8 @@ class Post extends Component {
                 this.vote(this.props.post.id, "downVote");
               }}
             />
+            <RaisedButton label="edit" />
+
             <RaisedButton label="hide" />
             <RaisedButton
               label={
@@ -52,6 +60,12 @@ class Post extends Component {
                   comment
                 </Link>
               }
+            />
+            <RaisedButton
+              label="delete"
+              onClick={event => {
+                this.deletePost();
+              }}
             />
           </CardActions>
         </Card>

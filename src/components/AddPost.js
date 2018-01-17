@@ -18,7 +18,7 @@ class AddPost extends Component {
   postPost(body) {
     this.props.dispatch(
       postPostData(
-        Date.now(),
+        Date.now().toString(),
         Date.now(),
         this.state.postBody,
         "carlos",

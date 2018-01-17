@@ -3,6 +3,7 @@ export const GETCOMMENTS = "GETCOMMENTS";
 export const POSTVOTE = "POSTVOTE";
 export const POSTCOMMENT = "POSTCOMMENT";
 export const POSTPOST = "POSTPOST";
+export const DELETEPOST = "DELETEPOST";
 
 const urlCategories = "http://localhost:3001/posts/categories";
 const urlPosts = "http://localhost:3001/posts";
@@ -141,6 +142,34 @@ export function postPostData(id, timestamp, title, body, owner, category) {
         return res.text();
       })
       .then(data => {
+        return dispatch(postPost(JSON.parse(data)));
+      });
+  };
+}
+
+export function deletePost(post) {
+  return {
+    type: DELETEPOST,
+    payload: post
+  };
+}
+
+export function deletePostData(id) {
+  return dispatch => {
+    let urlDeletePost = urlPostsVotes.replace("id", id);
+    fetch(urlDeletePost, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+      body: JSON.stringify({ id }),
+      method: "DELETE"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        console.log(JSON.parse(data));
         return dispatch(postPost(JSON.parse(data)));
       });
   };
