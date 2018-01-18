@@ -63,6 +63,10 @@ function reducer(state = { posts: initialPostData }, action) {
           return post.id !== action.payload.id;
         })
       });
+    case "GETCATEGORIES":
+      return Object.assign({}, state, {
+        categories: action.payload.categories
+      });
 
     default:
       return state;

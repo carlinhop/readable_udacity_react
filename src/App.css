@@ -5,6 +5,9 @@
   align-items: center;
 }
 
+.chip-container {
+  display: flex;
+}
 .chip {
   align-self: end;
 }

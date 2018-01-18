@@ -16,6 +16,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getPostData } from "./actions/actionCreators";
 import { getCommentsData } from "./actions/actionCreators";
+import { getCategoriesData } from "./actions/actionCreators";
 import NewPost from "./components/NewPost";
 import { Link } from "react-router-dom";
 import Chip from "material-ui/Chip";
@@ -26,22 +27,47 @@ class App extends Component {
   }
 
   componentWillMount() {
-    // store.subscribe(() => {
-    //   let state = store.getState();
-    //   this.setState({
-    //     posts: state.posts
-    //   });
-    // });
+    store.dispatch(getPostData());
+    store.dispatch(getCategoriesData());
+    store.subscribe(() => {
+      let state = store.getState();
+
+      this.setState({
+        posts: state.posts,
+        categories: state.categories
+      });
+    });
   }
 
-  componentDidMount() {
-    this.props.dispatch(getPostData());
-  }
-
+  componentDidMount() {}
   render() {
     const style = {
       "padding-bottom": "5%"
     };
+
+    let categoriesList;
+    try {
+      if (this.state.categories) {
+        categoriesList = this.state.categories.map(category => {
+          return (
+            <Chip
+              className="chip"
+              onRequestDelete={() => {
+                console.log("deleted");
+              }}
+            >
+              {category.name}
+            </Chip>
+          );
+        });
+      } else {
+        return <div>No categories yet</div>;
+      }
+    } catch (error) {
+      console.log(error);
+      return <div>No categories yet</div>;
+    }
+
     return (
       <BrowserRouter>
         <MuiThemeProvider>
@@ -53,7 +79,8 @@ class App extends Component {
                 return (
                   <div className="App">
                     <MenuBar style={style} />
-                    <Chip className="chip">category</Chip>
+                    <div className="chip-container"> {categoriesList}</div>
+
                     <div className="posts-list-container">
                       <PostsList />
                     </div>
@@ -76,10 +103,12 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: state ? state.posts : {}
-  };
-}
+// function mapStateToProps(state) {
+//   console.log(state);
+//   return {
+//     posts: state.posts,
+//     categories: state.categories ? state.categories : {}
+//   };
+// }
 
-export default connect(mapStateToProps)(App);
+export default App;
