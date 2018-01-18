@@ -48,6 +48,7 @@ class Comment extends Component {
                 this.vote("downVote");
               }}
             />
+            <RaisedButton label="edit" />
             <RaisedButton label="hide" />
             <RaisedButton
               label="delete"

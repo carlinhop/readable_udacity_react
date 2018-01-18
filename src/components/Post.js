@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import RaisedButton from "material-ui/RaisedButton";
-import { Card, CardActions, CardHeader } from "material-ui/Card";
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
 import { postVoteData } from "../actions/actionCreators";
 import { deletePostData } from "../actions/actionCreators";
 import { connect } from "react-redux";
@@ -32,10 +32,14 @@ class Post extends Component {
             title={this.props.post ? this.props.post.title : "Default title"}
             subtitle={
               this.props.post
-                ? "Voted: " + this.props.post.voteScore
+                ? "Category: " +
+                  this.props.post.category +
+                  " | Voted: " +
+                  this.props.post.voteScore
                 : "Default subtitle"
             }
           />
+          <CardText>{this.props.post.body}</CardText>
           <CardActions className="post-card-actions">
             <RaisedButton
               label="up"
