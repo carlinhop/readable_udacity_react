@@ -4,6 +4,7 @@ import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
 import RaisedButton from "material-ui/RaisedButton";
 import { connect } from "react-redux";
 import { postVoteData } from "../actions/actionCreators";
+import { deleteCommentData } from "../actions/actionCreators";
 
 class Comment extends Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class Comment extends Component {
     this.props.dispatch(
       postVoteData(this.props.comment.id, "comment", typeOfVote)
     );
+  }
+
+  deleteComment() {
+    this.props.dispatch(deleteCommentData(this.props.comment.id));
   }
   render() {
     const style = {
@@ -44,6 +49,12 @@ class Comment extends Component {
               }}
             />
             <RaisedButton label="hide" />
+            <RaisedButton
+              label="delete"
+              onClick={event => {
+                this.deleteComment();
+              }}
+            />
           </CardActions>
         </Card>
       </div>

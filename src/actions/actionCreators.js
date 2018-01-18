@@ -5,6 +5,7 @@ export const POSTCOMMENT = "POSTCOMMENT";
 export const POSTPOST = "POSTPOST";
 export const DELETEPOST = "DELETEPOST";
 export const GETCATEGORIES = "GETCATEGORIES";
+export const DELETECOMMENT = "DELETECOMMENT";
 
 const urlCategories = "http://localhost:3001/categories";
 const urlPosts = "http://localhost:3001/posts";
@@ -199,6 +200,33 @@ export function getCategoriesData() {
       .then(data => {
         console.log(JSON.parse(data));
         return dispatch(getCategories(JSON.parse(data)));
+      });
+  };
+}
+export function deleteComment(comment) {
+  return {
+    type: DELETECOMMENT,
+    payload: comment
+  };
+}
+
+export function deleteCommentData(id) {
+  let urlDeleteComment = urlCommentsVotes.replace("id", id);
+  return dispatch => {
+    fetch(urlDeleteComment, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+
+      method: "DELETE"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        console.log(JSON.parse(data));
+        return dispatch(deleteComment(JSON.parse(data)));
       });
   };
 }

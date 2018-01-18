@@ -57,7 +57,6 @@ function reducer(state = { posts: initialPostData }, action) {
       });
     case "DELETEPOST":
       let oldPosts2 = state.posts.slice();
-      console.log(action.payload.id);
       return Object.assign({}, state, {
         posts: oldPosts2.filter(post => {
           return post.id !== action.payload.id;
@@ -66,6 +65,13 @@ function reducer(state = { posts: initialPostData }, action) {
     case "GETCATEGORIES":
       return Object.assign({}, state, {
         categories: action.payload.categories
+      });
+    case "DELETECOMMENT":
+      let oldComments2 = state.comments.slice();
+      return Object.assign({}, state, {
+        comments: oldComments2.filter(comment => {
+          return comment.id !== action.payload.id;
+        })
       });
 
     default:
