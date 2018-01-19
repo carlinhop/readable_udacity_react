@@ -6,6 +6,7 @@ export const POSTPOST = "POSTPOST";
 export const DELETEPOST = "DELETEPOST";
 export const GETCATEGORIES = "GETCATEGORIES";
 export const DELETECOMMENT = "DELETECOMMENT";
+export const DELETECATEGORY = "DELETECATEGORY";
 
 const urlCategories = "http://localhost:3001/categories";
 const urlPosts = "http://localhost:3001/posts";
@@ -228,5 +229,12 @@ export function deleteCommentData(id) {
         console.log(JSON.parse(data));
         return dispatch(deleteComment(JSON.parse(data)));
       });
+  };
+}
+
+export function deleteCategoryData(category) {
+  return {
+    type: DELETECATEGORY,
+    payload: category
   };
 }

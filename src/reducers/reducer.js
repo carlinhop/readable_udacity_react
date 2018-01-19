@@ -74,6 +74,12 @@ function reducer(state = { posts: initialPostData }, action) {
         })
       });
 
+    case "DELETECATEGORY":
+      let oldCategories = [...state.categories];
+      let newCategories = oldCategories.filter(category => {
+        return category.name !== action.payload;
+      });
+      return Object.assign({}, state, { categories: newCategories });
     default:
       return state;
   }

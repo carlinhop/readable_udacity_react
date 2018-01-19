@@ -14,9 +14,16 @@ class PostsList extends Component {
 
   render() {
     let posts_list = [];
-    console.log(this.props.posts);
+    console.log(this.props.categories);
+    let categoriesList = this.props.categories.map(categoryObject => {
+      return categoryObject.name;
+    });
     for (let post of this.props.posts) {
-      posts_list.push(<Post post={post} />);
+      if (categoriesList.indexOf(post.category) !== -1) {
+        posts_list.push(<Post post={post} />);
+      } else {
+        continue;
+      }
     }
 
     return <div className="postList">{posts_list}</div>;
@@ -26,7 +33,8 @@ class PostsList extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    posts: state ? state.posts : [{ title: "nada que mostrar" }]
+    posts: state ? state.posts : [{ title: "nada que mostrar" }],
+    categories: state ? state.categories : [{ name: "nada" }]
   };
 }
 

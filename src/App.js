@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { getPostData } from "./actions/actionCreators";
 import { getCommentsData } from "./actions/actionCreators";
 import { getCategoriesData } from "./actions/actionCreators";
+import { deleteCategoryData } from "./actions/actionCreators";
 import NewPost from "./components/NewPost";
 import { Link } from "react-router-dom";
 import Chip from "material-ui/Chip";
@@ -40,6 +41,10 @@ class App extends Component {
   }
 
   componentDidMount() {}
+
+  deleteCategory(category) {
+    store.dispatch(deleteCategoryData(category));
+  }
   render() {
     const style = {
       "padding-bottom": "5%"
@@ -52,8 +57,8 @@ class App extends Component {
           return (
             <Chip
               className="chip"
-              onRequestDelete={() => {
-                console.log("deleted");
+              onRequestDelete={event => {
+                this.deleteCategory(category.name);
               }}
             >
               {category.name}
