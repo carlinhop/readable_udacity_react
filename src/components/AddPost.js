@@ -20,9 +20,10 @@ class AddPost extends Component {
       postPostData(
         Date.now().toString(),
         Date.now(),
+        "titulo",
         this.state.postBody,
         "carlos",
-        "default"
+        "redux"
       )
     );
   }
@@ -30,12 +31,17 @@ class AddPost extends Component {
   render() {
     return (
       <div className="add-comment">
+        <TextField hintText="title" />
         <TextField
+          hintText="post"
           multiLine={true}
           onChange={event => {
             this.getPostBody(event.target);
           }}
         />
+
+        <TextField hintText="owner" />
+        <TextField hintText="category" />
         <Link to="/">
           <RaisedButton
             label="publish"

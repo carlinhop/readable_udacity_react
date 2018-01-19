@@ -32,6 +32,7 @@ class AddComment extends Component {
       <div className="add-comment">
         <TextField
           multiLine={true}
+          hintText="type a comment"
           onChange={event => {
             this.getCommentBody(event.target);
           }}
