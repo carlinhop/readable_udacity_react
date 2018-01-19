@@ -14,16 +14,27 @@ class AddPost extends Component {
   getPostBody(body) {
     this.setState({ postBody: body.value });
   }
+  getPostTitle(title) {
+    this.setState({ postTitle: title.value });
+  }
+
+  getPostOwner(owner) {
+    this.setState({ postOwner: owner.value });
+  }
+
+  getPostCategory(category) {
+    this.setState({ postCategory: category.value });
+  }
 
   postPost(body) {
     this.props.dispatch(
       postPostData(
         Date.now().toString(),
         Date.now(),
-        "titulo",
+        this.state.postTitle,
         this.state.postBody,
-        "carlos",
-        "redux"
+        this.state.postOwner,
+        this.state.postCategory
       )
     );
   }
@@ -31,7 +42,12 @@ class AddPost extends Component {
   render() {
     return (
       <div className="add-comment">
-        <TextField hintText="title" />
+        <TextField
+          hintText="title"
+          onChange={event => {
+            this.getPostTitle(event.target);
+          }}
+        />
         <TextField
           hintText="post"
           multiLine={true}
@@ -40,8 +56,18 @@ class AddPost extends Component {
           }}
         />
 
-        <TextField hintText="owner" />
-        <TextField hintText="category" />
+        <TextField
+          hintText="owner"
+          onChange={event => {
+            this.getPostOwner(event.target);
+          }}
+        />
+        <TextField
+          hintText="category"
+          onChange={event => {
+            this.getPostCategory(event.target);
+          }}
+        />
         <Link to="/">
           <RaisedButton
             label="publish"
