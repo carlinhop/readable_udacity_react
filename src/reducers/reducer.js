@@ -26,7 +26,9 @@ const initialPostData = [
 function reducer(state = { posts: initialPostData }, action) {
   switch (action.type) {
     case "ALLPOSTS":
-      return Object.assign({}, state, { posts: action.payload });
+      return Object.assign({}, state, {
+        posts: action.payload
+      });
     case "GETCOMMENTS":
       return Object.assign({}, state, { comments: action.payload });
     case "POSTVOTE":
@@ -73,7 +75,6 @@ function reducer(state = { posts: initialPostData }, action) {
           return comment.id !== action.payload.id;
         })
       });
-
     case "DELETECATEGORY":
       let oldCategories = [...state.categories];
       let newCategories = oldCategories.filter(category => {
