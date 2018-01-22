@@ -108,12 +108,4 @@ class App extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   console.log(state);
-//   return {
-//     posts: state.posts,
-//     categories: state.categories ? state.categories : {}
-//   };
-// }
-
 export default App;

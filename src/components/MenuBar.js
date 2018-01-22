@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import IconButton from "material-ui/IconButton";
 import AppBar from "material-ui/AppBar";
+import MenuExampleSimple from "./Menu";
 
 let MenuBar = props => {
   const style = {
@@ -14,19 +15,10 @@ let MenuBar = props => {
     <AppBar
       className="appbar"
       title="Readable"
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
       style={props.style}
-      iconElementLeft={
-        <Link to="/">
-          {" "}
-          <IconButton>
-            <NavigationMenu color="white" />
-          </IconButton>{" "}
-        </Link>
-      }
+      iconElementLeft={<MenuExampleSimple />}
     />
   );
 };
 
 export default MenuBar;
-
