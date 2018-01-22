@@ -15,7 +15,11 @@ const style = {
 
 const MenuExampleSimple = ({ categories }) => {
   let menuItems = categories.map(category => {
-    return <MenuItem primaryText={category.name} />;
+    return (
+      <Link to={"/" + category.name}>
+        <MenuItem primaryText={category.name} />
+      </Link>
+    );
   });
 
   return (
@@ -28,10 +32,11 @@ const MenuExampleSimple = ({ categories }) => {
         }
       >
         <Link to="/">
-          <MenuItem primaryText="All posts" />
+          <MenuItem primaryText="Home" />
         </Link>
 
         {menuItems}
+        <MenuItem primaryText="Show All" />
       </IconMenu>
     </div>
   );

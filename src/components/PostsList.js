@@ -8,21 +8,30 @@ class PostsList extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log(this.props.posts);
-  }
+  componentDidMount() {}
 
   render() {
+    let categoriesList = [];
     let posts_list = [];
-    console.log(this.props.categories);
-    let categoriesList = this.props.categories.map(categoryObject => {
-      return categoryObject.name;
-    });
-    for (let post of this.props.posts) {
-      if (categoriesList.indexOf(post.category) !== -1) {
-        posts_list.push(<Post post={post} />);
-      } else {
-        continue;
+    if (this.props.filteredCategory) {
+      categoriesList.push(this.props.filteredCategory);
+      for (let post of this.props.posts) {
+        if (categoriesList.indexOf(post.category) !== -1) {
+          posts_list.push(<Post post={post} />);
+        } else {
+          continue;
+        }
+      }
+    } else {
+      categoriesList = this.props.categories.map(categoryObject => {
+        return categoryObject.name;
+      });
+      for (let post of this.props.posts) {
+        if (categoriesList.indexOf(post.category) !== -1) {
+          posts_list.push(<Post post={post} />);
+        } else {
+          continue;
+        }
       }
     }
 
@@ -30,8 +39,8 @@ class PostsList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state);
+function mapStateToProps(state, router) {
+  console.log(router);
   return {
     posts: state
       ? state.posts.sort((a, b) => {

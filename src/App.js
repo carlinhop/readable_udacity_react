@@ -47,7 +47,7 @@ class App extends Component {
   }
   render() {
     const style = {
-      "padding-bottom": "5%"
+      "padding-bottom": "1%"
     };
 
     let categoriesList;
@@ -101,6 +101,22 @@ class App extends Component {
             />
             <Route path="/post/:id" component={CommentedPost} />
             <Route path="/newpost" component={NewPost} />
+            <Route
+              path="/:category"
+              render={props => {
+                console.log(props);
+                return (
+                  <div>
+                    <MenuBar style={style} />
+                    <div className="posts-list-container">
+                      <PostsList
+                        filteredCategory={props.match.params.category}
+                      />
+                    </div>
+                  </div>
+                );
+              }}
+            />
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
