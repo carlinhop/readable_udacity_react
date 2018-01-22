@@ -58,13 +58,9 @@ class Post extends Component {
             <RaisedButton label="edit" />
 
             <RaisedButton label="hide" />
-            <RaisedButton
-              label={
-                <Link to={`/post/${id}`} style={style}>
-                  comment
-                </Link>
-              }
-            />
+            <Link to={`/post/${id}`}>
+              <RaisedButton label="comment" />
+            </Link>
             <RaisedButton
               label="delete"
               onClick={event => {
