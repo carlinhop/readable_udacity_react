@@ -90,7 +90,7 @@ class App extends Component {
                       <PostsList />
                     </div>
 
-                    <Link to="/newpost">
+                    <Link to="/newpost/new">
                       <FloatingActionButton className="add-post-button">
                         <ContentAdd />
                       </FloatingActionButton>
@@ -99,15 +99,16 @@ class App extends Component {
                 );
               }}
             />
-            <Route path="/post/:id" component={CommentedPost} />
-            <Route path="/newpost" component={NewPost} />
+            <Route exact path="/post/:id" component={CommentedPost} />
+            <Route exact path="/newpost/new" component={NewPost} />
             <Route
+              exact
               path="/:category"
               render={props => {
                 console.log(props);
                 return (
-                  <div>
-                    <MenuBar style={style} />
+                  <div className="App">
+                    <MenuBar id={"category"} style={style} />
                     <div className="posts-list-container">
                       <PostsList
                         filteredCategory={props.match.params.category}
