@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import NavigationMenu from "material-ui/svg-icons/navigation/menu";
-import IconButton from "material-ui/IconButton";
 import AppBar from "material-ui/AppBar";
 import MenuExampleSimple from "./Menu";
 

@@ -5,27 +5,42 @@ import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import MenuItem from "material-ui/MenuItem";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const style = {
   display: "inline-block",
   margin: "16px 32px 16px 0"
 };
 
-const MenuExampleSimple = () => (
-  <div>
-    <IconMenu
-      iconButtonElement={
-        <IconButton>
-          <NavigationMenu color="white" />
-        </IconButton>
-      }
-    >
-      <MenuItem primaryText="Maps" />
-      <MenuItem primaryText="Books" />
-      <MenuItem primaryText="Flights" />
-      <MenuItem primaryText="Apps" />
-    </IconMenu>
-  </div>
-);
+const MenuExampleSimple = ({ categories }) => {
+  let menuItems = categories.map(category => {
+    return <MenuItem primaryText={category.name} />;
+  });
 
-export default MenuExampleSimple;
+  return (
+    <div>
+      <IconMenu
+        iconButtonElement={
+          <IconButton>
+            <NavigationMenu color="white" />
+          </IconButton>
+        }
+      >
+        <Link to="/">
+          <MenuItem primaryText="All posts" />
+        </Link>
+
+        {menuItems}
+      </IconMenu>
+    </div>
+  );
+};
+
+function mapStateToProps(state) {
+  return {
+    categories: state.categories
+  };
+}
+
+export default connect(mapStateToProps)(MenuExampleSimple);
