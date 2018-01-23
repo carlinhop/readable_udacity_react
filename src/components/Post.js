@@ -23,6 +23,7 @@ class Post extends Component {
 
   render() {
     const id = this.props.post ? this.props.post["id"] : 1;
+    const category = this.props.post ? this.props.post["category"] : "react";
     const style = { margin: 12, "text-decoration": "none" };
 
     return (
@@ -58,7 +59,7 @@ class Post extends Component {
             <RaisedButton label="edit" />
 
             <RaisedButton label="hide" />
-            <Link to={`/post/${id}`}>
+            <Link to={`/${category}/${id}`}>
               <RaisedButton label="comment" />
             </Link>
             <RaisedButton

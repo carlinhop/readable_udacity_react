@@ -99,7 +99,7 @@ class App extends Component {
                 );
               }}
             />
-            <Route exact path="/post/:id" component={CommentedPost} />
+            <Route exact path="/:category/:id" component={CommentedPost} />
             <Route exact path="/newpost/new" component={NewPost} />
             <Route
               exact
