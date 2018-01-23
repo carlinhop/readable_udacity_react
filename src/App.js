@@ -19,6 +19,8 @@ import { getCommentsData } from "./actions/actionCreators";
 import { getCategoriesData } from "./actions/actionCreators";
 import { deleteCategoryData } from "./actions/actionCreators";
 import NewPost from "./components/NewPost";
+import EditPost from "./components/EditPost";
+import DetailsPost from "./components/EditPost";
 import { Link } from "react-router-dom";
 import Chip from "material-ui/Chip";
 
@@ -90,7 +92,7 @@ class App extends Component {
                       <PostsList />
                     </div>
 
-                    <Link to="/newpost/new">
+                    <Link to="/new/new/new">
                       <FloatingActionButton className="add-post-button">
                         <ContentAdd />
                       </FloatingActionButton>
@@ -99,8 +101,14 @@ class App extends Component {
                 );
               }}
             />
-            <Route exact path="/:category/:id" component={CommentedPost} />
-            <Route exact path="/newpost/new" component={NewPost} />
+            <Route exact path="/:category/:id" component={DetailsPost} />
+            <Route
+              exact
+              path="/:category/comment/:id"
+              component={CommentedPost}
+            />
+            <Route exact path="/:category/edit/:id" component={EditPost} />
+            <Route exact path="/new/new/new" component={NewPost} />
             <Route
               exact
               path="/:category"

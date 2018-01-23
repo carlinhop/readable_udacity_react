@@ -56,10 +56,11 @@ class Post extends Component {
                 this.vote(this.props.post.id, "downVote");
               }}
             />
-            <RaisedButton label="edit" />
-
+            <Link to={`/${category}/edit/${id}`}>
+              <RaisedButton label="edit" />
+            </Link>
             <RaisedButton label="hide" />
-            <Link to={`/${category}/${id}`}>
+            <Link to={`/${category}/comment/${id}`}>
               <RaisedButton label="comment" />
             </Link>
             <RaisedButton
