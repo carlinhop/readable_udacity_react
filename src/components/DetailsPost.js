@@ -40,17 +40,19 @@ class DetailsPost extends Component {
   // }
 
   render() {
+    console.log(this.props);
     return (
       <div className="add-comment">
         <TextField
           hintText="title"
-          value={"hola"}
+          value={this.props.post.title}
           onChange={event => {
             this.getPostTitle(event.target);
           }}
         />
         <TextField
           hintText="post"
+          value={this.props.post.body}
           multiLine={true}
           onChange={event => {
             this.getPostBody(event.target);
@@ -59,12 +61,14 @@ class DetailsPost extends Component {
 
         <TextField
           hintText="owner"
+          value={this.props.post.author}
           onChange={event => {
             this.getPostOwner(event.target);
           }}
         />
         <TextField
           hintText="category"
+          value={this.props.post.category}
           onChange={event => {
             this.getPostCategory(event.target);
           }}
@@ -84,9 +88,11 @@ class DetailsPost extends Component {
 }
 
 function mapStateToProps(state, router) {
-  post: state.posts.filter(post => {
-    post.id === router.match.params.id;
-  });
+  return {
+    post: state.posts.filter(post => {
+      return post.id === router.match.params.id;
+    })[0]
+  };
 }
 
 export default connect(mapStateToProps)(DetailsPost);
