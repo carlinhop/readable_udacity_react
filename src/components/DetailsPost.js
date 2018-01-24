@@ -1,98 +1,56 @@
 import React from "react";
-import { Component } from "react";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
-// import { postPostData } from "../actions/actionCreators";
+import Post from "./Post";
+import AddComment from "./AddComment";
+import Comment from "./Comment";
+import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { getCommentsData } from "../actions/actionCreators";
+import { Component } from "react";
 
 class DetailsPost extends Component {
   constructor(props) {
     super(props);
   }
 
-  getPostBody(body) {
-    this.setState({ postBody: body.value });
+  componentDidMount() {
+    this.props.dispatch(getCommentsData(this.props.post.id));
   }
-  getPostTitle(title) {
-    this.setState({ postTitle: title.value });
-  }
-
-  getPostOwner(owner) {
-    this.setState({ postOwner: owner.value });
-  }
-
-  getPostCategory(category) {
-    this.setState({ postCategory: category.value });
-  }
-
-  // postPost(body) {
-  //   this.props.dispatch(
-  //     postPostData(
-  //       Date.now().toString(),
-  //       Date.now(),
-  //       this.state.postTitle,
-  //       this.state.postBody,
-  //       this.state.postOwner,
-  //       this.state.postCategory
-  //     )
-  //   );
-  // }
 
   render() {
-    console.log(this.props);
-    return (
-      <div className="add-comment">
-        <TextField
-          hintText="title"
-          value={this.props.post.title}
-          onChange={event => {
-            this.getPostTitle(event.target);
-          }}
-        />
-        <TextField
-          hintText="post"
-          value={this.props.post.body}
-          multiLine={true}
-          onChange={event => {
-            this.getPostBody(event.target);
-          }}
-        />
+    const style = {
+      "padding-bottom": "1%"
+    };
 
-        <TextField
-          hintText="owner"
-          value={this.props.post.author}
-          onChange={event => {
-            this.getPostOwner(event.target);
-          }}
-        />
-        <TextField
-          hintText="category"
-          value={this.props.post.category}
-          onChange={event => {
-            this.getPostCategory(event.target);
-          }}
-        />
-        <Link to="/">
-          <RaisedButton
-            label="publish"
-            primary={true}
-            onClick={event => {
-              this.postPost();
-            }}
-          />
-        </Link>
+    let commentsLists;
+    if (this.props.comments) {
+      commentsLists = this.props.comments.map(comment => {
+        return <Comment comment={comment} />;
+      });
+    } else {
+      commentsLists = <Comment comment={{ 0: { author: "nothing" } }} />;
+    }
+
+    return (
+      <div>
+        <MenuBar style={style} />
+
+        <div className="commented-post">
+          <Post post={this.props.post} />
+
+          {commentsLists}
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state, router) {
+  console.log(router);
   return {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;
-    })[0]
+    })[0],
+    comments: state ? state.comments : {}
   };
 }
-
 export default connect(mapStateToProps)(DetailsPost);
