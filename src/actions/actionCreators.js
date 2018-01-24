@@ -7,11 +7,12 @@ export const DELETEPOST = "DELETEPOST";
 export const GETCATEGORIES = "GETCATEGORIES";
 export const DELETECOMMENT = "DELETECOMMENT";
 export const DELETECATEGORY = "DELETECATEGORY";
+export const PUTPOST = "PUTPOST";
 
 const urlCategories = "http://localhost:3001/categories";
 const urlPosts = "http://localhost:3001/posts";
 const urlComments = "http://localhost:3001/posts/id/comments";
-const urlPostsVotes = "http://localhost:3001/posts/id/";
+const urlPostsVotes = "http://localhost:3001/posts/id";
 const urlCommentsVotes = "http://localhost:3001/comments/id/";
 const allComments = "http://localhost:3001/comments";
 const urlAddPost = "http://localhost:3001/posts";
@@ -236,5 +237,32 @@ export function deleteCategoryData(category) {
   return {
     type: DELETECATEGORY,
     payload: category
+  };
+}
+
+export function putPost(post) {
+  return {
+    type: PUTPOST,
+    payload: post
+  };
+}
+
+export function putPostData(id, title, body) {
+  let urlPutPost = urlPostsVotes.replace("id", id);
+  return dispatch => {
+    fetch(urlPutPost, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+      body: JSON.stringify({ title, body }),
+      method: "PUT"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        return dispatch(putPost(JSON.parse(data)));
+      });
   };
 }

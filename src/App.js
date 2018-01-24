@@ -49,7 +49,7 @@ class App extends Component {
   }
   render() {
     const style = {
-      "padding-bottom": "1%"
+      "margin-bottom": "2%"
     };
 
     let categoriesList;
@@ -85,7 +85,8 @@ class App extends Component {
               render={props => {
                 return (
                   <div className="App">
-                    <MenuBar style={style} />
+                    <MenuBar />
+
                     <div className="chip-container"> {categoriesList}</div>
 
                     <div className="posts-list-container">

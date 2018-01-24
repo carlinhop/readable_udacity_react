@@ -45,7 +45,6 @@ class DetailsPost extends Component {
 }
 
 function mapStateToProps(state, router) {
-  console.log(router);
   return {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;

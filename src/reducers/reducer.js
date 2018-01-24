@@ -81,6 +81,16 @@ function reducer(state = { posts: initialPostData }, action) {
         return category.name !== action.payload;
       });
       return Object.assign({}, state, { categories: newCategories });
+    case "PUTPOST":
+      let oldPosts3 = [...state.posts];
+      let oldPosts3Filtered = oldPosts3.filter(post => {
+        return post["id"] !== action.payload["id"];
+      });
+      console.log(oldPosts3Filtered);
+      return Object.assign({}, state, {
+        posts: oldPosts3Filtered.concat([action.payload])
+      });
+
     default:
       return state;
   }
