@@ -6,7 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-class AddPost extends Component {
+class DetailsPost extends Component {
   constructor(props) {
     super(props);
   }
@@ -44,7 +44,7 @@ class AddPost extends Component {
       <div className="add-comment">
         <TextField
           hintText="title"
-          defaultValue={}
+          value={"hola"}
           onChange={event => {
             this.getPostTitle(event.target);
           }}
@@ -84,9 +84,9 @@ class AddPost extends Component {
 }
 
 function mapStateToProps(state, router) {
-  post: state.posts.filter((post)=>{
-    post.id === router.props.
-  })
+  post: state.posts.filter(post => {
+    post.id === router.match.params.id;
+  });
 }
 
-export default connect(mapStateToProps)(AddPost);
+export default connect(mapStateToProps)(DetailsPost);

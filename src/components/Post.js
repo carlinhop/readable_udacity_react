@@ -29,17 +29,19 @@ class Post extends Component {
     return (
       <div className="post">
         <Card>
-          <CardHeader
-            title={this.props.post ? this.props.post.title : "Default title"}
-            subtitle={
-              this.props.post
-                ? "Category: " +
-                  this.props.post.category +
-                  " | Voted: " +
-                  this.props.post.voteScore
-                : "Default subtitle"
-            }
-          />
+          <Link to={`/${this.props.post.category}/${this.props.post.id}`}>
+            <CardHeader
+              title={this.props.post ? this.props.post.title : "Default title"}
+              subtitle={
+                this.props.post
+                  ? "Category: " +
+                    this.props.post.category +
+                    " | Voted: " +
+                    this.props.post.voteScore
+                  : "Default subtitle"
+              }
+            />
+          </Link>
           <CardText>{this.props.post.body}</CardText>
           <CardActions className="post-card-actions">
             <RaisedButton

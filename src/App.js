@@ -20,7 +20,7 @@ import { getCategoriesData } from "./actions/actionCreators";
 import { deleteCategoryData } from "./actions/actionCreators";
 import NewPost from "./components/NewPost";
 import EditPost from "./components/EditPost";
-import DetailsPost from "./components/EditPost";
+import DetailsPost from "./components/DetailsPost";
 import { Link } from "react-router-dom";
 import Chip from "material-ui/Chip";
 
