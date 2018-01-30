@@ -5,6 +5,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import { connect } from "react-redux";
 import { postVoteData } from "../actions/actionCreators";
 import { deleteCommentData } from "../actions/actionCreators";
+import { Link } from "react-router-dom";
 
 class Comment extends Component {
   constructor(props) {
@@ -48,7 +49,9 @@ class Comment extends Component {
                 this.vote("downVote");
               }}
             />
-            <RaisedButton label="edit" />
+            <Link to={"/comment/" + this.props.comment.id + "/edit"}>
+              <RaisedButton label="edit" />
+            </Link>
             <RaisedButton label="hide" />
             <RaisedButton
               label="delete"

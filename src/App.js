@@ -23,6 +23,7 @@ import EditPost from "./components/EditPost";
 import DetailsPost from "./components/DetailsPost";
 import { Link } from "react-router-dom";
 import Chip from "material-ui/Chip";
+import EditComment from "./components/EditComment";
 
 class App extends Component {
   constructor(props) {
@@ -108,6 +109,7 @@ class App extends Component {
               path="/:category/comment/:id"
               component={CommentedPost}
             />
+            <Route exact path="/comment/:id/edit" component={EditComment} />
             <Route exact path="/:category/edit/:id" component={EditPost} />
             <Route exact path="/new/new/new" component={NewPost} />
             <Route
