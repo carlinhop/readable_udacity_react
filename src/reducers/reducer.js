@@ -86,9 +86,16 @@ function reducer(state = { posts: initialPostData }, action) {
       let oldPosts3Filtered = oldPosts3.filter(post => {
         return post["id"] !== action.payload["id"];
       });
-      console.log(oldPosts3Filtered);
       return Object.assign({}, state, {
         posts: oldPosts3Filtered.concat([action.payload])
+      });
+    case "PUTCOMMENT":
+      let oldComments3 = [...state.posts];
+      let oldComments3Filtered = oldComments3.filter(comment => {
+        return comment["id"] !== action.payload["id"];
+      });
+      return Object.assign({}, state, {
+        comments: oldComments3Filtered.concat([action.payload])
       });
 
     default:
