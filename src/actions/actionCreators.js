@@ -9,6 +9,7 @@ export const DELETECOMMENT = "DELETECOMMENT";
 export const DELETECATEGORY = "DELETECATEGORY";
 export const PUTPOST = "PUTPOST";
 export const PUTCOMMENT = "PUTCOMMENT";
+export const SORTPOSTSBYVOTE = "SORTPOSTSBYVOTE";
 
 const urlCategories = "http://localhost:3001/categories";
 const urlPosts = "http://localhost:3001/posts";
@@ -292,5 +293,11 @@ export function putCommentData(id, timestamp, body) {
       .then(data => {
         return dispatch(putComment(JSON.parse(data)));
       });
+  };
+}
+
+export function sortPostsByVote() {
+  return {
+    type: SORTPOSTSBYVOTE
   };
 }

@@ -40,19 +40,8 @@ class PostsList extends Component {
 }
 
 function mapStateToProps(state, router) {
-  console.log(router);
   return {
-    posts: state
-      ? state.posts.sort((a, b) => {
-          if (a.voteScore > b.voteScore) {
-            return -1;
-          } else if (a.voteScore < b.voteScore) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
-      : [{ title: "nada que mostrar" }],
+    posts: state ? state.posts : [{ title: "nada que mostrar" }],
     categories: state ? state.categories : [{ name: "nada" }]
   };
 }
