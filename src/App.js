@@ -116,7 +116,6 @@ class App extends Component {
               exact
               path="/:category"
               render={props => {
-                console.log(props);
                 return (
                   <div className="App">
                     <MenuBar id={"category"} style={style} />

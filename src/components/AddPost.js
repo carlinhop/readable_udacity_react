@@ -57,7 +57,7 @@ class AddPost extends Component {
         />
 
         <TextField
-          hintText="owner"
+          hintText="author"
           onChange={event => {
             this.getPostOwner(event.target);
           }}

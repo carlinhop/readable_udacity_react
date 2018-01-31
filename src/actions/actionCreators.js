@@ -133,14 +133,14 @@ export function postPost(post) {
   };
 }
 
-export function postPostData(id, timestamp, title, body, owner, category) {
+export function postPostData(id, timestamp, title, body, author, category) {
   return dispatch => {
     fetch(urlAddPost, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "carlos"
       },
-      body: JSON.stringify({ id, timestamp, title, body, owner, category }),
+      body: JSON.stringify({ id, timestamp, title, body, author, category }),
       method: "POST"
     })
       .then(res => {

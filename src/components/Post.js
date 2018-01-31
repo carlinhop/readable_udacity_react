@@ -37,7 +37,9 @@ class Post extends Component {
                   ? "Category: " +
                     this.props.post.category +
                     " | Voted: " +
-                    this.props.post.voteScore
+                    this.props.post.voteScore +
+                    " | Author: " +
+                    this.props.post.author
                   : "Default subtitle"
               }
             />
