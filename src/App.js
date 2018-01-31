@@ -33,6 +33,7 @@ class App extends Component {
   componentWillMount() {
     store.dispatch(getPostData());
     store.dispatch(getCategoriesData());
+    store.dispatch(getCommentsData());
     store.subscribe(() => {
       let state = store.getState();
 

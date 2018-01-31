@@ -8,7 +8,7 @@ class PostsList extends Component {
     super(props);
   }
 
-  componentDidMount() {}
+  componentWillMount() {}
 
   render() {
     let categoriesList = [];

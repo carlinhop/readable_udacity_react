@@ -15,13 +15,17 @@ class AddComment extends Component {
     this.setState({ commentBody: body.value });
   }
 
+  getCommentOwner(owner) {
+    this.setState({ commentOwner: owner.value });
+  }
+
   postComment(body) {
     this.props.dispatch(
       postCommentData(
         Date.now().toString(),
         Date.now(),
         this.state.commentBody,
-        "carlos",
+        this.state.commentOwner,
         this.props.post.id
       )
     );
@@ -35,6 +39,13 @@ class AddComment extends Component {
           hintText="type a comment"
           onChange={event => {
             this.getCommentBody(event.target);
+          }}
+        />
+        <TextField
+          multiLine={true}
+          hintText="owner"
+          onChange={event => {
+            this.getCommentOwner(event.target);
           }}
         />
         <RaisedButton

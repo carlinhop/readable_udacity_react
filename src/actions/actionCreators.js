@@ -52,9 +52,9 @@ export function getComments(comments) {
 
 export function getCommentsData(postID) {
   return dispatch => {
-    let urlPostCommentUrl = urlComments.replace("id", postID);
+    let urlGetCommentUrl = urlComments.replace("id", postID);
 
-    fetch(urlPostCommentUrl, {
+    fetch(urlGetCommentUrl, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "carlos"
@@ -108,14 +108,14 @@ export function postComment(comments, typeOfVote) {
   };
 }
 
-export function postCommentData(id, timestamp, body, owner, parentId) {
+export function postCommentData(id, timestamp, body, author, parentId) {
   return dispatch => {
     fetch(allComments, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "carlos"
       },
-      body: JSON.stringify({ id, timestamp, body, owner, parentId }),
+      body: JSON.stringify({ id, timestamp, body, author, parentId }),
       method: "POST"
     })
       .then(res => {

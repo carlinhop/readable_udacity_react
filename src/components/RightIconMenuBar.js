@@ -40,7 +40,6 @@ const RightIconMenuBar = props => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {};
 }
 

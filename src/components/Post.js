@@ -6,11 +6,20 @@ import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
 import { postVoteData } from "../actions/actionCreators";
 import { deletePostData } from "../actions/actionCreators";
 import { connect } from "react-redux";
+import { getCommentsData } from "../actions/actionCreators";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 
 class Post extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.setState({ comments: [] }, () => {
+      this.setState({
+        comments: 10
+      });
+    });
   }
 
   vote(postID, option) {
@@ -25,6 +34,8 @@ class Post extends Component {
     const id = this.props.post ? this.props.post["id"] : 1;
     const category = this.props.post ? this.props.post["category"] : "react";
     const style = { margin: 12, "text-decoration": "none" };
+    let numOfComments = this.state.comments ? this.state.comments.length : 0;
+    console.log(this.state);
 
     return (
       <div className="post">
@@ -39,7 +50,9 @@ class Post extends Component {
                     " | Voted: " +
                     this.props.post.voteScore +
                     " | Author: " +
-                    this.props.post.author
+                    this.props.post.author +
+                    " | Number of comments: " +
+                    numOfComments
                   : "Default subtitle"
               }
             />

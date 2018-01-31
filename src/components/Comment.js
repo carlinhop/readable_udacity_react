@@ -31,7 +31,7 @@ class Comment extends Component {
         <Card>
           <CardHeader
             title={this.props.comment.author}
-            subtitle={this.props.comment.voteScore}
+            subtitle={"Voted: " + this.props.comment.voteScore}
           />
           <CardActions>
             <CardText>{this.props.comment.body}</CardText>
