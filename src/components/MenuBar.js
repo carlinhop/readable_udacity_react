@@ -1,6 +1,7 @@
 import React from "react";
 import AppBar from "material-ui/AppBar";
 import MenuExampleSimple from "./Menu";
+import RightIconMenuBar from "./RightIconMenuBar";
 
 let MenuBar = props => {
   return (
@@ -8,6 +9,7 @@ let MenuBar = props => {
       className="appbar"
       title="Readable"
       iconElementLeft={<MenuExampleSimple />}
+      iconElementRight={<RightIconMenuBar />}
     />
   );
 };
