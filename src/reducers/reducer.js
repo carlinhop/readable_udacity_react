@@ -97,7 +97,7 @@ function reducer(state = { posts: initialPostData }, action) {
       return Object.assign({}, state, {
         comments: oldComments3Filtered.concat([action.payload])
       });
-    case "SORTPOSTSBYVOTED":
+    case "SORTPOSTSBYVOTE":
       let posts2 = [...state.posts];
       return Object.assign({}, state, {
         posts: posts2.sort((a, b) => {
