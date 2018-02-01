@@ -30,7 +30,17 @@ function reducer(state = { posts: initialPostData }, action) {
         posts: action.payload
       });
     case "GETCOMMENTS":
-      return Object.assign({}, state, { comments: action.payload });
+      if (state.comments) {
+        let newComments = new Set(state.comments.concat(action.payload));
+        return Object.assign({}, state, {
+          comments: Array.from(newComments)
+        });
+      } else {
+        return Object.assign({}, state, {
+          comments: action.payload
+        });
+      }
+
     case "POSTVOTE":
       if (action.typeOfVote === "post") {
         let oldPosts = state.posts.filter(post => {

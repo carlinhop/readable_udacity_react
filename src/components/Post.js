@@ -14,12 +14,8 @@ class Post extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.setState({ comments: [] }, () => {
-      this.setState({
-        comments: 10
-      });
-    });
+  componentDidMount() {
+    this.props.dispatch(getCommentsData(this.props.post.id));
   }
 
   vote(postID, option) {
@@ -34,9 +30,11 @@ class Post extends Component {
     const id = this.props.post ? this.props.post["id"] : 1;
     const category = this.props.post ? this.props.post["category"] : "react";
     const style = { margin: 12, "text-decoration": "none" };
-    let numOfComments = this.state.comments ? this.state.comments.length : 0;
-    console.log(this.state);
-
+    let postComments = this.props.comments
+      ? this.props.comments.filter(comment => {
+          return this.props.post.id === comment.parentId;
+        })
+      : [];
     return (
       <div className="post">
         <Card>
@@ -52,7 +50,7 @@ class Post extends Component {
                     " | Author: " +
                     this.props.post.author +
                     " | Number of comments: " +
-                    numOfComments
+                    (this.props.comments ? postComments.length : 0)
                   : "Default subtitle"
               }
             />
@@ -93,6 +91,11 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps(state) {}
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    comments: state.comments
+  };
+}
 
 export default connect(mapStateToProps)(Post);
