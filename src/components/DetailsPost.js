@@ -22,11 +22,13 @@ class DetailsPost extends Component {
     };
 
     let commentsLists;
-    if (this.props.comments) {
+    try {
+      console.log(this.props.comments);
       commentsLists = this.props.comments.map(comment => {
         return <Comment comment={comment} />;
       });
-    } else {
+    } catch (error) {
+      console.log(error);
       commentsLists = <Comment comment={{ 0: { author: "nothing" } }} />;
     }
 
@@ -49,7 +51,11 @@ function mapStateToProps(state, router) {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;
     })[0],
-    comments: state ? state.comments : {}
+    comments: state.comments
+      ? state.comments.filter(comment => {
+          return comment.parentId === router.match.params.id;
+        })
+      : {}
   };
 }
 export default connect(mapStateToProps)(DetailsPost);

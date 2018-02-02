@@ -31,9 +31,21 @@ function reducer(state = { posts: initialPostData }, action) {
       });
     case "GETCOMMENTS":
       if (state.comments) {
-        let newComments = new Set(state.comments.concat(action.payload));
+        console.log(action.payload);
+        let oldComments = [...state.comments];
+        let arrayOfCommentsId = Array.from(
+          new Set(
+            oldComments.map(comment => {
+              return comment.id;
+            })
+          )
+        );
+        let arrayOfUniqueComments = action.payload.filter(comment => {
+          return arrayOfCommentsId.indexOf(comment.id) == -1;
+        });
+        let newComments = oldComments.concat(arrayOfUniqueComments);
         return Object.assign({}, state, {
-          comments: Array.from(newComments)
+          comments: newComments
         });
       } else {
         return Object.assign({}, state, {

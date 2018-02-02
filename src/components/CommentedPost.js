@@ -47,12 +47,15 @@ class CommentedPost extends Component {
 }
 
 function mapStateToProps(state, router) {
-  console.log(router);
   return {
     post: state.posts.filter(post => {
       return post.id === router.match.params.id;
     })[0],
-    comments: state ? state.comments : {}
+    comments: state
+      ? state.comments.filter(comment => {
+          return comment.parentId === router.match.params.id;
+        })
+      : {}
   };
 }
 export default connect(mapStateToProps)(CommentedPost);
