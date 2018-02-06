@@ -50,7 +50,13 @@ class Post extends Component {
                     " | Author: " +
                     this.props.post.author +
                     " | Number of comments: " +
-                    (this.props.comments ? postComments.length : 0)
+                    (this.props.comments ? postComments.length : 0) +
+                    " | Date: " +
+                    new Date(this.props.post.timestamp).getDate() +
+                    "/" +
+                    new Date(this.props.post.timestamp).getMonth() +
+                    "/" +
+                    new Date(this.props.post.timestamp).getFullYear()
                   : "Default subtitle"
               }
             />
