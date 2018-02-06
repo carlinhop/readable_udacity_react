@@ -120,18 +120,17 @@ function reducer(state = { posts: initialPostData }, action) {
         comments: oldComments3Filtered.concat([action.payload])
       });
     case "SORTPOSTSBYVOTE":
-      let posts2 = [...state.posts];
-      return Object.assign({}, state, {
-        posts: posts2.sort((a, b) => {
-          if (a.voteScore > b.voteScore) {
-            return -1;
-          } else if (a.voteScore < b.voteScore) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
+      let oldPosts4 = [...state.posts];
+      let sortedPosts = oldPosts4.sort((a, b) => {
+        if (a.voteScore > b.voteScore) {
+          return -1;
+        } else if (a.voteScore < b.voteScore) {
+          return 1;
+        } else {
+          return 0;
+        }
       });
+      return Object.assign({}, state, { posts: sortedPosts, sorted: "byVote" });
 
     default:
       return state;

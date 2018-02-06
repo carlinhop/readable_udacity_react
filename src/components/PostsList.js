@@ -40,8 +40,34 @@ class PostsList extends Component {
 }
 
 function mapStateToProps(state, router) {
+  let sortedPosts;
+  if (state.sorted === "byVote") {
+    console.log("sorted by vote");
+    sortedPosts = state.posts.sort((a, b) => {
+      if (a.voteScore > b.voteScore) {
+        return -1;
+      } else if (a.voteScore < b.voteScore) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  } else {
+    sortedPosts = state.posts.sort((a, b) => {
+      if (a.timestamp > b.timestamp) {
+        return -1;
+      } else if (a.timestamp < b.timestamp) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  console.log(sortedPosts);
+
   return {
-    posts: state ? state.posts : [{ title: "nada que mostrar" }],
+    posts: sortedPosts,
     categories: state ? state.categories : [{ name: "nada" }]
   };
 }
