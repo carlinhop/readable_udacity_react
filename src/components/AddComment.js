@@ -11,6 +11,10 @@ class AddComment extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.setState({ commentBody: "", commentOwner: "" });
+  }
+
   getCommentBody(body) {
     this.setState({ commentBody: body.value });
   }
@@ -37,6 +41,7 @@ class AddComment extends Component {
         <TextField
           multiLine={true}
           hintText="type a comment"
+          value={this.state.commentBody}
           onChange={event => {
             this.getCommentBody(event.target);
           }}
@@ -44,6 +49,7 @@ class AddComment extends Component {
         <TextField
           multiLine={true}
           hintText="owner"
+          value={this.state.commentOwner}
           onChange={event => {
             this.getCommentOwner(event.target);
           }}
@@ -53,6 +59,7 @@ class AddComment extends Component {
           primary={true}
           onClick={event => {
             this.postComment();
+            this.setState({ commentBody: "", commentOwner: "" });
             return <Redirect to="/" />;
           }}
         />
