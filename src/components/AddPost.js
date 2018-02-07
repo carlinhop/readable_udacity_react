@@ -5,6 +5,8 @@ import RaisedButton from "material-ui/RaisedButton";
 import { postPostData } from "../actions/actionCreators";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 class AddPost extends Component {
   constructor(props) {
@@ -23,7 +25,8 @@ class AddPost extends Component {
   }
 
   getPostCategory(category) {
-    this.setState({ postCategory: category.value });
+    console.log(category);
+    this.setState({ postCategory: category.innerText });
   }
 
   postPost(body) {
@@ -40,6 +43,11 @@ class AddPost extends Component {
   }
 
   render() {
+    let selectOptions = this.props.categories
+      ? this.props.categories.map(category => {
+          return <MenuItem value={category.name} primaryText={category.name} />;
+        })
+      : [];
     return (
       <div className="add-comment">
         <TextField
@@ -62,12 +70,17 @@ class AddPost extends Component {
             this.getPostOwner(event.target);
           }}
         />
-        <TextField
-          hintText="category"
+
+        <SelectField
+          value={this.state ? this.state.postCategory : ""}
+          floatingLabelText="Frequency"
           onChange={event => {
             this.getPostCategory(event.target);
           }}
-        />
+        >
+          {selectOptions}
+        </SelectField>
+
         <Link to="/">
           <RaisedButton
             label="publish"
@@ -82,6 +95,11 @@ class AddPost extends Component {
   }
 }
 
-function mapStateToProps(state) {}
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    categories: state.categories
+  };
+}
 
 export default connect(mapStateToProps)(AddPost);
