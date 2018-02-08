@@ -10,6 +10,7 @@ export const DELETECATEGORY = "DELETECATEGORY";
 export const PUTPOST = "PUTPOST";
 export const PUTCOMMENT = "PUTCOMMENT";
 export const SORTPOSTSBYVOTE = "SORTPOSTSBYVOTE";
+export const GETPOSTDETAILS = "GETPOSTDETAILS";
 
 const urlCategories = "http://localhost:3001/categories";
 const urlPosts = "http://localhost:3001/posts";
@@ -18,6 +19,7 @@ const urlPostsVotes = "http://localhost:3001/posts/id";
 const urlCommentsVotes = "http://localhost:3001/comments/id/";
 const allComments = "http://localhost:3001/comments";
 const urlAddPost = "http://localhost:3001/posts";
+const urlGetPostDetails = "http://localhost:3001/posts/id";
 
 export function getPosts(posts) {
   return {
@@ -299,5 +301,31 @@ export function putCommentData(id, timestamp, body) {
 export function sortPostsByVote() {
   return {
     type: SORTPOSTSBYVOTE
+  };
+}
+
+export function getPost(post) {
+  return {
+    type: GETPOSTDETAILS,
+    payload: post
+  };
+}
+
+export function getPostDetailsData(id) {
+  let urlGetPost = urlGetPostDetails.replace("id", id);
+  return dispatch => {
+    fetch(urlGetPost, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "carlos"
+      },
+      method: "GET"
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        return dispatch(getPost(JSON.parse(data)));
+      });
   };
 }

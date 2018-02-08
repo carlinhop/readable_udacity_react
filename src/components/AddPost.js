@@ -73,7 +73,7 @@ class AddPost extends Component {
 
         <SelectField
           value={this.state ? this.state.postCategory : ""}
-          floatingLabelText="Frequency"
+          floatingLabelText="Category"
           onChange={event => {
             this.getPostCategory(event.target);
           }}

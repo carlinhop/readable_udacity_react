@@ -5,6 +5,7 @@ import Comment from "./Comment";
 import MenuBar from "./MenuBar";
 import { connect } from "react-redux";
 import { getCommentsData } from "../actions/actionCreators";
+import { getPostDetailsData } from "../actions/actionCreators";
 import { Component } from "react";
 
 class DetailsPost extends Component {
@@ -14,9 +15,11 @@ class DetailsPost extends Component {
 
   componentDidMount() {
     this.props.dispatch(getCommentsData(this.props.post.id));
+    this.props.dispatch(getPostDetailsData(this.props.post.id));
   }
 
   render() {
+    console.log(this.props.post);
     const style = {
       "padding-bottom": "1%"
     };
@@ -55,7 +58,8 @@ function mapStateToProps(state, router) {
       ? state.comments.filter(comment => {
           return comment.parentId === router.match.params.id;
         })
-      : {}
+      : {},
+    detailedPost: state.detailedPost
   };
 }
 export default connect(mapStateToProps)(DetailsPost);

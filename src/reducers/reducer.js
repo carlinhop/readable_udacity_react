@@ -131,6 +131,8 @@ function reducer(state = { posts: initialPostData }, action) {
         }
       });
       return Object.assign({}, state, { posts: sortedPosts, sorted: "byVote" });
+    case "GETPOSTDETAILS":
+      return Object.assign({}, state, { detailedPost: action.payload });
 
     default:
       return state;
