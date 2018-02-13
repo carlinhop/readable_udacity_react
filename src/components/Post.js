@@ -15,7 +15,9 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getCommentsData(this.props.post.id));
+    if (this.props.post) {
+      this.props.dispatch(getCommentsData(this.props.post.id));
+    }
   }
 
   vote(postID, option) {
@@ -30,70 +32,85 @@ class Post extends Component {
     const id = this.props.post ? this.props.post["id"] : 1;
     const category = this.props.post ? this.props.post["category"] : "react";
     const style = { margin: 12, "text-decoration": "none" };
-    let postComments = this.props.comments
-      ? this.props.comments.filter(comment => {
-          return this.props.post.id === comment.parentId;
-        })
-      : [];
-    return (
-      <div className="post">
-        <Card>
-          <Link to={`/${this.props.post.category}/${this.props.post.id}`}>
-            <CardHeader
-              title={this.props.post ? this.props.post.title : "Default title"}
-              subtitle={
-                this.props.post
-                  ? "Category: " +
-                    this.props.post.category +
-                    " | Voted: " +
-                    this.props.post.voteScore +
-                    " | Author: " +
-                    this.props.post.author +
-                    " | Number of comments: " +
-                    (this.props.comments ? postComments.length : 0) +
-                    " | Date: " +
-                    new Date(this.props.post.timestamp).getDate() +
-                    "/" +
-                    new Date(this.props.post.timestamp).getMonth() +
-                    "/" +
-                    new Date(this.props.post.timestamp).getFullYear()
-                  : "Default subtitle"
-              }
-            />
-          </Link>
-          <CardText>{this.props.post.body}</CardText>
-          <CardActions className="post-card-actions">
-            <RaisedButton
-              label="up"
-              style={style}
-              onClick={event => {
-                this.vote(this.props.post.id, "upVote");
-              }}
-            />
-            <RaisedButton
-              label="down"
-              style={style}
-              onClick={event => {
-                this.vote(this.props.post.id, "downVote");
-              }}
-            />
-            <Link to={`/${category}/edit/${id}`}>
-              <RaisedButton label="edit" />
+    let postComments;
+    if (this.props.post) {
+      postComments = this.props.comments
+        ? this.props.comments.filter(comment => {
+            return this.props.post.id === comment.parentId;
+          })
+        : [];
+    } else {
+      postComments = [];
+    }
+
+    try {
+      return (
+        <div className="post">
+          <Card>
+            <Link to={`/${this.props.post.category}/${this.props.post.id}`}>
+              <CardHeader
+                title={
+                  this.props.post ? this.props.post.title : "Default title"
+                }
+                subtitle={
+                  this.props.post
+                    ? "Category: " +
+                      this.props.post.category +
+                      " | Voted: " +
+                      this.props.post.voteScore +
+                      " | Author: " +
+                      this.props.post.author +
+                      " | Number of comments: " +
+                      (this.props.comments ? postComments.length : 0) +
+                      " | Date: " +
+                      new Date(this.props.post.timestamp).getDate() +
+                      "/" +
+                      new Date(this.props.post.timestamp).getMonth() +
+                      "/" +
+                      new Date(this.props.post.timestamp).getFullYear()
+                    : "Default subtitle"
+                }
+              />
             </Link>
-            <RaisedButton label="hide" />
-            <Link to={`/${category}/comment/${id}`}>
-              <RaisedButton label="comment" />
-            </Link>
-            <RaisedButton
-              label="delete"
-              onClick={event => {
-                this.deletePost();
-              }}
-            />
-          </CardActions>
-        </Card>
-      </div>
-    );
+            <CardText>{this.props.post.body}</CardText>
+            <CardActions className="post-card-actions">
+              <RaisedButton
+                label="up"
+                style={style}
+                onClick={event => {
+                  this.vote(this.props.post.id, "upVote");
+                }}
+              />
+              <RaisedButton
+                label="down"
+                style={style}
+                onClick={event => {
+                  this.vote(this.props.post.id, "downVote");
+                }}
+              />
+              <Link to={`/${category}/edit/${id}`}>
+                <RaisedButton label="edit" />
+              </Link>
+              <RaisedButton label="hide" />
+              <Link to={`/${category}/comment/${id}`}>
+                <RaisedButton label="comment" />
+              </Link>
+              <Link to="/">
+                <RaisedButton
+                  label="delete"
+                  onClick={event => {
+                    this.deletePost();
+                  }}
+                />
+              </Link>
+            </CardActions>
+          </Card>
+        </div>
+      );
+    } catch (e) {
+      console.log(e);
+      return <p>The post you are retrieving doesn't exist</p>;
+    }
   }
 }
 

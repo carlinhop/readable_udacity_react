@@ -14,8 +14,10 @@ class DetailsPost extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getCommentsData(this.props.post.id));
-    this.props.dispatch(getPostDetailsData(this.props.post.id));
+    if (this.props.post) {
+      this.props.dispatch(getCommentsData(this.props.post.id));
+      this.props.dispatch(getPostDetailsData(this.props.post.id));
+    }
   }
 
   render() {
