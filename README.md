@@ -11,7 +11,6 @@ Using this server, you will build a React/Redux front end for the application. T
 ## Table of Contents
 
 * [Installation](#installation)
-* [Running the code](#running-the-code)
 
 ## Installation
 
