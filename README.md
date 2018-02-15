@@ -33,3 +33,5 @@ Get the front-end:
 Get the front-end running:
 
 `npm start`
+
+After that a browser window will open with the project. Be aware it is still in development so the css is not in optimal shape, the reducer is massive and there are bunch of code I need to get fixed... still a work in progress.
