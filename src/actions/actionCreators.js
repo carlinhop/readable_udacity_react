@@ -53,21 +53,23 @@ export function getComments(comments) {
 }
 
 export function getCommentsData(postID) {
-  return dispatch => {
-    let urlGetCommentUrl = urlComments.replace("id", postID);
+  return async dispatch => {
+    try {
+      let urlGetCommentUrl = urlComments.replace("id", postID);
 
-    fetch(urlGetCommentUrl, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "carlos"
-      }
-    })
-      .then(res => {
-        return res.text();
-      })
-      .then(data => {
-        return dispatch(getComments(JSON.parse(data)));
+      let res = await fetch(urlGetCommentUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "carlos"
+        }
       });
+
+      let data = await res.text();
+
+      return dispatch(getComments(JSON.parse(data)));
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
